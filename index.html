@@ -1,44 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
+  <head>
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="description"
+          content="Official portfolio website of Param Chordiya, a Machine Learning Engineer with expertise in AI, Computer Vision, and NLP. Explore projects, skills, and contact information here."/>
+    <meta name="keywords"
+          content="Param Chordiya, Portfolio, Machine Learning Engineer, AI, Computer Vision, NLP, UC San Diego, Projects, Resume"/>
+    <meta name="author" content="Param Chordiya" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000" />
+  
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Param Chordiya | Machine Learning Engineer" />
+    <meta property="og:description"
+          content="Portfolio of Param Chordiya: Machine Learning Engineer proficient in Computer Vision and NLP." />
+    <meta property="og:image" content="https://www.example.com/src/png/img_prof.jpg" />
+    <meta property="og:url" content="https://www.example.com" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Param Chordiya | Portfolio" />
+    <meta name="twitter:description"
+          content="Portfolio of Param Chordiya, an ML engineer focusing on AI, Computer Vision, and NLP. Check out projects, resume, and skills." />
+    <meta name="twitter:image" content="https://www.example.com/src/png/img_prof.jpg" />
+    <meta name="twitter:site" content="@Portfolio" />
+  
+    <!-- Title -->
+    <title>Param Chordiya | Machine Learning Engineer</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="src/png/IMG_6400.png" />
+  
+    <!-- AOS CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Passions+Conflict&family=Orbitron&family=Fira+Code&family=Six+Caps" />
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Replace 'G-YMWDE0VTD3' with your own GA Measurement ID if needed -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMWDE0VTD3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YMWDE0VTD3');
+    </script>
+  
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Param Chordiya",
+      "description": "Machine Learning Engineer specializing in AI, Computer Vision, and NLP. Passionate about developing innovative solutions.",
+      "url": "https://www.example.com",
+      "image": "https://www.example.com/src/png/img_prof.jpg",
+      "jobTitle": "Machine Learning Engineer",
+      "alumniOf": "UC San Diego",
+      "sameAs": [
+        "https://www.linkedin.com/in/paramchordiya",
+        "https://github.com/paramchordiya",
+        "https://www.instagram.com/justbeingparam"
+      ]
     }
-    gtag("js", new Date());
-
-    gtag("config", "G-YMWDE0VTD3");
-  </script>
-
-
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#000" />
-  <meta name="keywords"
-    content="Param Chordiya,Param Chordiya portfolio,Param Chordiya Portfolio,Param Chordiya site,Param Chordiya Site,Param Chordiya me,Param Chordiya web,Param Chordiya github, site, uiverse,uiverse,Param Chordiya uiverse,Param Chordiya frontend developer,frontend developer,Param Chordiya" />
-  <meta name="author" content="Param Chordiya" />
-
-  <meta property="og:title" content="Param Chordiya | Portfolio" />
-
-  <meta property="og:site_name" content="Param Chordiya Portfolio" />
-
-
-  <meta name="twitter:site" content="@Portfolio" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Param Chordiya | Portfolio" />
-  <title>Param Chordiya | Portfolio</title>
-  <link rel="icon" type="image/x-icon" href="src/png/IMG_6400.png" />
-  <!-- aos cdn -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <!-- stylesheet -->
-  <link rel="stylesheet" href="style.css" />
-  <!-- google fonts-->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Passions+Conflict&family=Orbitron&family=Fira+Code&family=Six+Caps" />
+    </script>
+  </head>
 
 <body class="body">
   <audio loop="" id="audioPlayer" style="display: none">
@@ -307,6 +342,8 @@
     </section>
     <!-- about section ends  -->
 
+    
+
     <section class="skills-section-container" id="skills">
       <div class="skills-section">
         <div class="section-heading" data-aos="fade-up">
@@ -430,6 +467,8 @@
         </div>
       </div>
     </section>
+
+    
     <!-- skills section ends -->
     <section class="projects-section-container" id="projects">
       <div class="projects-section-div">
@@ -455,8 +494,8 @@
                   Langchain, RAG, LLM, Transformers
                 </p>
                 <div class="project-buttons">
-                  <a href="https://github.com/ParamChordiya/Nebula-Nexus.git" target="_blank"
-                    class="github-redirect" aria-label="Visit flashcards on GitHub">
+                  <a href="https://github.com/ParamChordiya/Nebula-Nexus.git" target="_blank" class="github-redirect"
+                    aria-label="Visit flashcards on GitHub">
                     <img src="src/svg/github.svg" alt="github redirect button" />
                   </a>
                 </div>
