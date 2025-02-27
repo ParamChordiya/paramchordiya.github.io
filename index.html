@@ -3,728 +3,1240 @@
   <head>
     <!-- Primary Meta Tags -->
     <meta charset="UTF-8" />
-    <meta name="description"
-          content="Official portfolio website of Param Chordiya, a Machine Learning Engineer with expertise in AI, Computer Vision, and NLP. Explore projects, skills, and contact information here."/>
-    <meta name="keywords"
-          content="Param Chordiya, Portfolio, Machine Learning Engineer, AI, Computer Vision, NLP, UC San Diego, Projects, Resume"/>
+    <meta
+      name="description"
+      content="Official portfolio website of Param Chordiya, a Machine Learning Engineer with expertise in AI, Computer Vision, and NLP. Explore projects, skills, and contact information here."
+    />
+    <meta
+      name="keywords"
+      content="Param Chordiya, Portfolio, Machine Learning Engineer, AI, Computer Vision, NLP, UC San Diego, Projects, Resume"
+    />
     <meta name="author" content="Param Chordiya" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000" />
-  
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Param Chordiya | Machine Learning Engineer" />
-    <meta property="og:description"
-          content="Portfolio of Param Chordiya: Machine Learning Engineer proficient in Computer Vision and NLP." />
-    <meta property="og:image" content="https://www.example.com/src/png/img_prof.jpg" />
+    <meta
+      property="og:title"
+      content="Param Chordiya | Machine Learning Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Portfolio of Param Chordiya: Machine Learning Engineer proficient in Computer Vision and NLP."
+    />
+    <meta
+      property="og:image"
+      content="https://www.example.com/src/png/img_prof.jpg"
+    />
     <meta property="og:url" content="https://www.example.com" />
     <meta property="og:type" content="website" />
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Param Chordiya | Portfolio" />
-    <meta name="twitter:description"
-          content="Portfolio of Param Chordiya, an ML engineer focusing on AI, Computer Vision, and NLP. Check out projects, resume, and skills." />
-    <meta name="twitter:image" content="https://www.example.com/src/png/img_prof.jpg" />
+    <meta
+      name="twitter:title"
+      content="Param Chordiya | Portfolio"
+    />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Param Chordiya, an ML engineer focusing on AI, Computer Vision, and NLP. Check out projects, resume, and skills."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.example.com/src/png/img_prof.jpg"
+    />
     <meta name="twitter:site" content="@Portfolio" />
-  
+
     <!-- Title -->
     <title>Param Chordiya | Machine Learning Engineer</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="src/png/IMG_6400.png" />
-  
+
     <!-- AOS CDN -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css" />
-  
+
     <!-- Google Fonts -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Passions+Conflict&family=Orbitron&family=Fira+Code&family=Six+Caps" />
-    
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Passions+Conflict&family=Orbitron&family=Fira+Code&family=Six+Caps"
+    />
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- Replace 'G-YMWDE0VTD3' with your own GA Measurement ID if needed -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMWDE0VTD3"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-YMWDE0VTD3"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YMWDE0VTD3');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-YMWDE0VTD3");
     </script>
-  
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Param Chordiya",
-      "description": "Machine Learning Engineer specializing in AI, Computer Vision, and NLP. Passionate about developing innovative solutions.",
-      "url": "https://www.example.com",
-      "image": "https://www.example.com/src/png/img_prof.jpg",
-      "jobTitle": "Machine Learning Engineer",
-      "alumniOf": "UC San Diego",
-      "sameAs": [
-        "https://www.linkedin.com/in/paramchordiya",
-        "https://github.com/paramchordiya",
-        "https://www.instagram.com/justbeingparam"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Param Chordiya",
+        "description": "Machine Learning Engineer specializing in AI, Computer Vision, and NLP. Passionate about developing innovative solutions.",
+        "url": "https://www.example.com",
+        "image": "https://www.example.com/src/png/img_prof.jpg",
+        "jobTitle": "Machine Learning Engineer",
+        "alumniOf": "UC San Diego",
+        "sameAs": [
+          "https://www.linkedin.com/in/paramchordiya",
+          "https://github.com/paramchordiya",
+          "https://www.instagram.com/justbeingparam"
+        ]
+      }
     </script>
   </head>
 
-<body class="body">
-  <audio loop="" id="audioPlayer" style="display: none">
-    <source src="src/mp3/preloader.mp3" type="audio/mp3" />
-  </audio>
-  <div id="preloader"></div>
-  <noscript>Allow Javascript</noscript>
+  <body class="body">
+    <audio loop="" id="audioPlayer" style="display: none">
+      <source src="src/mp3/preloader.mp3" type="audio/mp3" />
+    </audio>
+    <div id="preloader"></div>
+    <noscript>Allow Javascript</noscript>
 
-  <header>
-    <div class="cursor-inner" id="cursor-inner"></div>
-    <div class="cursor-outer" id="cursor-outer"></div>
+    <header>
+      <div class="cursor-inner" id="cursor-inner"></div>
+      <div class="cursor-outer" id="cursor-outer"></div>
 
-    <div class="navbar" id="navbar">
-      <div class="hey">Hey!</div>
-      <div class="logo" tabindex="0" aria-label="param chordiya logo">
-        <div class="logo-top">
-          <img src="src/png/IMG_6401.png" alt="animation-head" id="nav-avatar" />
+      <div class="navbar" id="navbar">
+        <div class="hey">Hey!</div>
+        <div class="logo" tabindex="0" aria-label="param chordiya logo">
+          <div class="logo-top">
+            <img
+              src="src/png/IMG_6401.png"
+              alt="animation-head"
+              id="nav-avatar"
+            />
+          </div>
+        </div>
+        <div class="navbar-tabs" id="navbar-tabs">
+          <ul class="navbar-tabs-ul">
+            <li
+              class="home activeThistab"
+              data-aos="fade-down"
+              data-aos-delay="100"
+            >
+              <a href="#home" tabindex="0" aria-label="Home menu button">
+                &#60;/Home&#62;
+              </a>
+            </li>
+
+            <li class="about" data-aos="fade-down" data-aos-delay="300">
+              <a href="#about" aria-label="about menu button">
+                &#60;/AboutMe&#62;
+              </a>
+            </li>
+
+            <li class="skills" data-aos="fade-down" data-aos-delay="500">
+              <a href="#skills" aria-label="skills menu button">
+                &#60;/Skills&#62;
+              </a>
+            </li>
+
+            <!-- NEW NAV TAB FOR PUBLICATIONS -->
+            <li class="publications" data-aos="fade-down" data-aos-delay="600">
+              <a href="#publications" aria-label="publications menu button">
+                &#60;/Publications&#62;
+              </a>
+            </li>
+
+            <li class="projects" data-aos="fade-down" data-aos-delay="700">
+              <a href="#projects" aria-label="projects menu button">
+                &#60;/Projects&#62;
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- navbar tabs ends -->
+      </div>
+    </header>
+    <!-- header ends here -->
+
+    <main>
+      <!-- hamburger -->
+      <div class="hamburger" id="hamburger" data-aos="fade">
+        <div class="hamburgerbase">
+          <button
+            id="hamburger-button"
+            onclick="hamburgerMenu()"
+            tabindex="0"
+            aria-label="Menu Button"
+          >
+            <span class="burger-bar" id="burger-bar1"></span>
+            <span class="burger-bar" id="burger-bar2"></span>
+            <span class="burger-bar" id="burger-bar3"></span>
+          </button>
         </div>
       </div>
-      <div class="navbar-tabs" id="navbar-tabs">
-        <ul class="navbar-tabs-ul">
-          <li class="home activeThistab" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="100">
+      <!-- hamburger -->
+      <div class="mobiletogglemenu" id="mobiletogglemenu">
+        <ul class="mobile-navbar-tabs-ul" id="mobile-ul">
+          <li
+            id="home-mobile-tab"
+            class="mobile-navbar-tabs-li home activeThismobiletab"
+            onclick="hidemenubyli()"
+          >
             <a href="#home" tabindex="0" aria-label="Home menu button">
               &#60;/Home&#62;
             </a>
           </li>
 
-          <li class="about" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="300">
-            <a href="#about" aria-label="about menu button">
+          <li
+            id="aboutme-mobile-tab"
+            class="mobile-navbar-tabs-li about"
+            onclick="hidemenubyli()"
+          >
+            <a href="#about" tabindex="0" aria-label="about menu button">
               &#60;/AboutMe&#62;
             </a>
           </li>
-
-          <li class="skills" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="500">
-            <a href="#skills" aria-label="skills menu button">
+          <li
+            id="skills-mobile-tab"
+            class="mobile-navbar-tabs-li skills"
+            onclick="hidemenubyli()"
+          >
+            <a href="#skills" tabindex="0" aria-label="skills menu button">
               &#60;/Skills&#62;
             </a>
           </li>
 
-          <li class="projects" class="navbar-tabs-li" data-aos="fade-down" data-aos-delay="700">
-            <a href="#projects" aria-label="projects menu button">
+          <!-- NEW MOBILE NAV FOR PUBLICATIONS -->
+          <li
+            id="publications-mobile-tab"
+            class="mobile-navbar-tabs-li publications"
+            onclick="hidemenubyli()"
+          >
+            <a href="#publications" tabindex="0" aria-label="publications menu button">
+              &#60;/Publications&#62;
+            </a>
+          </li>
+
+          <li
+            id="projects-mobile-tab"
+            class="mobile-navbar-tabs-li projects"
+            onclick="hidemenubyli()"
+          >
+            <a href="#projects" tabindex="0" aria-label="projects menu button">
               &#60;/Projects&#62;
             </a>
           </li>
         </ul>
       </div>
-      <!-- navbar tabs ends -->
-    </div>
-  </header>
-  <!-- header ends here -->
+      <!-- mobile toggle menu ends -->
 
-  <main>
-    <!-- hamburger -->
-    <div class="hamburger" id="hamburger" data-aos="fade">
-      <div class="hamburgerbase">
-        <button id="hamburger-button" onclick="hamburgerMenu()" tabindex="0" aria-label="Menu Button">
-          <span class="burger-bar" id="burger-bar1"></span>
-          <span class="burger-bar" id="burger-bar2"></span>
-          <span class="burger-bar" id="burger-bar3"></span>
-        </button>
-      </div>
-    </div>
-    <!-- hamburger -->
-    <div class="mobiletogglemenu" id="mobiletogglemenu">
-      <ul class="mobile-navbar-tabs-ul" id="mobile-ul">
-        <li id="home-mobile-tab" class="mobile-navbar-tabs-li home activeThismobiletab" onclick="hidemenubyli()">
-          <a href="#home" tabindex="0" aria-label="Home menu button">
-            &#60;/Home&#62;
-          </a>
-        </li>
-
-        <li id="aboutme-mobile-tab" class="mobile-navbar-tabs-li about" onclick="hidemenubyli()">
-          <a href="#about" tabindex="0" aria-label="about menu button">
-            &#60;/AboutMe&#62;
-          </a>
-        </li>
-        <li id="skills-mobile-tab" class="mobile-navbar-tabs-li skills" onclick="hidemenubyli()">
-          <a href="#skills" tabindex="0" aria-label="skills menu button">
-            &#60;/Skills&#62;
-          </a>
-        </li>
-        <li id="projects-mobile-tab" class="mobile-navbar-tabs-li projects" onclick="hidemenubyli()">
-          <a href="#projects" tabindex="0" aria-label="projects menu button">
-            &#60;/Projects&#62;
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!-- mobile toggle menu ends -->
-
-    <section class="landing-page-container" id="home">
-      <div class="blob"></div>
-
-      <div class="text-content">
-        <article id="hello-friend" data-aos="fade-up" data-aos-delay="0">
-          <p class="jello">B</p>
-          <p class="jello">o</p>
-          <p class="jello">n</p>
-          <p class="jello">j</p>
-          <p class="jello">o</p>
-          <p class="jello">u</p>
-          <p class="jello">r</p>
-
-          <p class="jello">(</p>
-          <p class="jello">)</p>
-          <p class="jello">;</p>
-          &nbsp;
-          <p class="jello">I</p>
-          <p class="jello">'</p>
-          <p class="jello">m</p>
-        </article>
-        <article id="name" data-aos="fade-up" data-aos-delay="200">
-          <p class="jello">P</p>
-          <p class="jello">a</p>
-          <p class="jello">r</p>
-          <p class="jello">a</p>
-          <p class="jello">m</p>
-
-          &nbsp;
-          <p class="jello">C</p>
-          <p class="jello">h</p>
-          <p class="jello">o</p>
-          <p class="jello">r</p>
-          <p class="jello">d</p>
-          <p class="jello">i</p>
-          <p class="jello">y</p>
-          <p class="jello">a</p>
-
-          <p class="jello">.</p>
-        </article>
-
-        <article id="work" data-aos="fade-up" data-aos-delay="400">
-          <div>
-            <p class="jello">I</p>
-          </div>
-          <div>
-            <p class="jello">b</p>
-            <p class="jello">u</p>
-            <p class="jello">i</p>
-            <p class="jello">l</p>
-            <p class="jello">d</p>
-          </div>
-          <div>
-            <p class="jello">f</p>
-            <p class="jello">u</p>
-            <p class="jello">t</p>
+      <section class="landing-page-container" id="home">
+        <div class="blob"></div>
+        <div class="text-content">
+          <article id="hello-friend" data-aos="fade-up" data-aos-delay="0">
+            <p class="jello">B</p>
+            <p class="jello">o</p>
+            <p class="jello">n</p>
+            <p class="jello">j</p>
+            <p class="jello">o</p>
             <p class="jello">u</p>
             <p class="jello">r</p>
-            <p class="jello">e</p>
-          </div>
-          <div>
-            <p class="jello">t</p>
-            <p class="jello">e</p>
-            <p class="jello">c</p>
-            <p class="jello">h</p>
-          </div>
-          <div>
-            <p class="jello">l</p>
-            <p class="jello">e</p>
-            <p class="jello">v</p>
-            <p class="jello">e</p>
+
+            <p class="jello">(</p>
+            <p class="jello">)</p>
+            <p class="jello">;</p>
+            &nbsp;
+            <p class="jello">I</p>
+            <p class="jello">'</p>
+            <p class="jello">m</p>
+          </article>
+          <article id="name" data-aos="fade-up" data-aos-delay="200">
+            <p class="jello">P</p>
+            <p class="jello">a</p>
             <p class="jello">r</p>
             <p class="jello">a</p>
-            <p class="jello">g</p>
+            <p class="jello">m</p>
+            &nbsp;
+            <p class="jello">C</p>
+            <p class="jello">h</p>
+            <p class="jello">o</p>
+            <p class="jello">r</p>
+            <p class="jello">d</p>
             <p class="jello">i</p>
-            <p class="jello">n</p>
-            <p class="jello">g</p>
-          </div>
-          <div>
-            <p class="jello">A</p>
-            <p class="jello">I</p>
-          </div>
-          <div>
-            <p class="jello">&</p>
-          </div>
-          <div>
-            <p class="jello">M</p>
-            <p class="jello">L</p>
+            <p class="jello">y</p>
+            <p class="jello">a</p>
             <p class="jello">.</p>
-          </div>
-
-        </article>
-        <p id="info-para" data-aos="fade-up" data-aos-delay="600">
-          Machine Learning Engineer with expertise in Computer Vision and Natural Language Processing. I am passionate
-          about developing innovative AI solutions and collaborating on cutting-edge projects.<br />
-          <br />
-          I value robust algorithm design, efficient model architectures, and impactful real-world applications.
-        </p>
-
-        <div class="contact-btn-div" data-aos="fade-up" data-aos-delay="800">
-          <a href="mailto:param1111.chordiya@gmail.com" tabindex="-1">
-            <button class="letsTalkBtn">
-              <p class="letsTalkBtn-text">Let's Talk!</p>
-              <span class="letsTalkBtn-BG"></span>
-            </button></a>
-          <div class="setting-container" id="setting-container">
-            <input type="checkbox" id="switchforsetting" onclick="settingtoggle()" />
-
-            <label for="switchforsetting" class="needtobeinvert" id="labelforsetting" tabindex="0"
-              aria-label="settings for sound and appearance"></label>
-
-            <div class="visualmodetogglebuttoncontainer" id="visualmodetogglebuttoncontainer">
-              <input type="checkbox" id="switchforvisualmode" onclick="visualmode()" />
-              <label for="switchforvisualmode" id="labelforvisualmode" tabindex="0"
-                aria-label="switch appearance"></label>
-            </div>
-
-            <div class="soundtogglebuttoncontainer" id="soundtogglebuttoncontainer">
-              <input type="checkbox" id="switchforsound" onclick="playpause()" />
-              <label for="switchforsound" id="labelforsound" tabindex="0" aria-label="switch sound"
-                class="needtobeinvert"></label>
-            </div>
-          </div>
-          <!-- setting div ends -->
-        </div>
-        <!-- contact-btn-div -->
-      </div>
-
-    </section>
-    <!-- landing page ends here -->
-    <section class="about-section-container" id="about" data-aos="fade-up">
-      <div class="about-section">
-        <div class="section-heading">
-          <h2 class="section-heading-article" tabindex="0" aria-label="About me heading">
-            &#60;/AboutMe&#62;
-          </h2>
-          <p class="sectionHeadingP"></p>
-        </div>
-
-        <div class="info-dp-section">
-          <div class="about-info">
-            <p tabindex="0">
-              Hello! I'm Param, currently pursuing my Master's degree at UC San Diego and recently had a chance of
-              honing my skills as a Machine
-              Learning intern at 7Next R&D Division of 7-Eleven. My world revolves around the exciting realms of ML and
-              data science, where I explore the depths of Computer Vision, encodings, RAGs, and Generative AI to enhance
-              search
-              algorithms and tackle high-impact projects.
-            </p>
-
-            <br />
-            <p tabindex="0">
-              My focus is on pushing the boundaries of AI and ML, coding innovative solutions from the ground up, and
-              transforming visionary ideas into reality. I'm dedicated to excelling in cutting-edge technology and
-              making a significant impact in the world of AI.
-            </p>
-
-            <!-- Resume button -->
-            <button class="resume-btn" id="resume-btn" onclick="openURL()">
-              <div class="sign">
-                <svg viewBox="0 0 640 512">
-                  <path
-                    d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z" />
-                </svg>
-              </div>
-
-              <div class="text">Resume</div>
-            </button>
-          </div>
-
-          <div class="dp" data-aos="fade-up">
-            <img src="src/png/img_prof.jpg" alt="Param Chordiya" tabindex="0" aria-label="image of param" />
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- about section ends  -->
-
-    
-
-    <section class="skills-section-container" id="skills">
-      <div class="skills-section">
-        <div class="section-heading" data-aos="fade-up">
-          <h2 class="section-heading-article" tabindex="0" aria-label="skills heading">
-            &#60;/Skills&#62;
-          </h2>
-          <p class="sectionHeadingP"></p>
-        </div>
-
-        <div class="frontend-dev-section">
-          <h3 class="frontend-dev-heading" data-aos="fade-up" tabindex="0"
-            aria-label="As a Machine Learning Engineer, I bring a diverse arsenal of skills to the table">
-            Tech Stack
-          </h3>
-          <ul class="tech-stack-wrapper">
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="src/icons/Anaconda.png" alt="Html skill" class="tech-stack-logo" />
-              <span class="tooltip">Anaconda</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/AWS.png" alt="css skill" class="tech-stack-logo" />
-              <span class="tooltip">AWS</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Bootstrap.png" alt="js skill" class="tech-stack-logo" />
-              <span class="tooltip">Bootstrap</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Flask.png" alt="bootstrap skill" class="tech-stack-logo" />
-              <span class="tooltip">Flask</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Git.png" alt="react skill" class="tech-stack-logo" />
-              <span class="tooltip">Git</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/GitHub.png" alt="github skill" class="tech-stack-logo needtobeinvert" />
-              <span class="tooltip">GitHub</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/GitLab.png" alt="git skill" class="tech-stack-logo" />
-              <span class="tooltip">GitLab</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/HTML5.png" alt="c language skill" class="tech-stack-logo" />
-              <span class="tooltip">HTML5</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Jupyter.png" alt="c++ language skill" class="tech-stack-logo" />
-              <span class="tooltip">Jupyter</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Kaggle.png" alt="photoshop skill" class="tech-stack-logo" />
-              <span class="tooltip">Kaggle</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Keras.png" alt="figma skill" class="tech-stack-logo" />
-              <span class="tooltip">Keras</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Linux.png" alt="adobe illustrator skill" class="tech-stack-logo" />
-              <span class="tooltip">Linux</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/MongoDB.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">MongoDB</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/OpenCV.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">OpenCV</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Pandas.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">Pandas</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Python.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">Python</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/PyTorch.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">PyTorch</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/scikit-learn.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">SKLearn</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/SQLite.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">SQLite</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/TensorFlow.png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">TensorFlow</span>
-            </li>
-
-            <li class="tech-stack-box" data-aos="fade-up">
-              <img src="./src/icons/Visual Studio Code (VS Code).png" alt="canva skill" class="tech-stack-logo" />
-              <span class="tooltip">VS Code</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    
-    <!-- skills section ends -->
-    <section class="projects-section-container" id="projects">
-      <div class="projects-section-div">
-        <div class="section-heading" data-aos="fade-up">
-          <h2 class="section-heading-article" tabindex="0" aria-label="My projects starts from here">
-            &#60;/Projects&#62;
-          </h2>
-          <p class="sectionHeadingP"></p>
-        </div>
-        <div class="project-boxes-div">
-          <!-- ---------------------- -->
-          <div class="project-box-wrapper" data-aos="fade-up">
-            <div class="project-box project-box4" id="project-box4">
-              <div class="info-div">
-                <!-- <img src="src/webp/qr-favicon.webp" alt="Qr generator website favicon" class="faviconforProject" /> -->
-                <article class="ProjectHeading">Nebula Nexus: A Scientific Paper Query Tool</article>
-                <p class="ProjectDescription">
-                  Nebula-Nexus is a futuristic PDF question-answering assistant for research papers, powered by
-                  Retrieval-Augmented Generation (RAG). This tool allows users to upload any PDF and receive precise
-                  answers to their questions based on the content of the research paper.
-                </p>
-                <p class="ProjectDescription">
-                  Langchain, RAG, LLM, Transformers
-                </p>
-                <div class="project-buttons">
-                  <a href="https://github.com/ParamChordiya/Nebula-Nexus.git" target="_blank" class="github-redirect"
-                    aria-label="Visit flashcards on GitHub">
-                    <img src="src/svg/github.svg" alt="github redirect button" />
-                  </a>
-                </div>
-              </div>
-              <div class="image-div">
-                <img src="src/png/neb_nexus.jpeg" alt="qr generator website preview image" />
-              </div>
-            </div>
-          </div>
-
-
-          <!-- ---------------------- -->
-          <div class="project-box-wrapper" data-aos="fade-up">
-            <div class="project-box project-box4" id="project-box4">
-              <div class="info-div">
-                <!-- <img src="src/webp/qr-favicon.webp" alt="Qr generator website favicon" class="faviconforProject" /> -->
-                <article class="ProjectHeading">Kidney Disease Detection</article>
-                <p class="ProjectDescription">
-                  Developed custom ensemble model combining pre-trained CNN for feature learning with a classification
-                  model on reduced features
-                </p>
-                <p class="ProjectDescription">
-                  VGG16, VGG19, ResNet, MobileNet, Boosting Algorithms, Flask, Python, TensorFlow
-                </p>
-                <div class="project-buttons">
-
-                  <a href="https://drive.google.com/file/d/1TNyKbqT65yNiFutbk0PD2etrb0zricMu/view" target="_blank"
-                    class="cta" aria-label="Visit qr generator live">
-                    <span>Live view</span>
-                    <svg viewBox="0 0 13 10" height="10px" width="15px">
-                      <path d="M1,5 L11,5"></path>
-                      <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <div class="image-div">
-                <img src="src/webp/d1.webp" alt="qr generator website preview image" />
-              </div>
-            </div>
-          </div>
-
-          <!-- ---------------------- -->
-          <div class="project-box-wrapper" data-aos="fade-up">
-            <div class="project-box project-box3" id="project-box3">
-              <div class="info-div">
-                <!-- <img src="src/ico/netflixfavicon.ico" alt="netflix website favicon" class="faviconforProject" /> -->
-                <article class="ProjectHeading">Recommendation System</article>
-                <p class="ProjectDescription">
-                  Build a Recommendation System using ML model (SVD) to recommendations to the users based on their
-                  interests and requirement along with user login with authentication.
-                </p>
-                <p class="ProjectDescription">
-                  SVD, Python</p>
-                <div class="project-buttons">
-                  <a href="https://github.com/ParamChordiya/Bajaj-Finserv-Hack-RX-2.0-2022" target="_blank"
-                    class="github-redirect" aria-label="Visit Netflix clone on GitHub">
-                    <img src="src/svg/github.svg" alt="github redirect button" />
-                  </a>
-                  <!-- <a href="https://react-project-20.netlify.app/" target="_blank" class="cta"
-                    aria-label="Visit netflix clone live">
-                    <span>Live view</span>
-                    <svg viewBox="0 0 13 10" height="10px" width="15px">
-                      <path d="M1,5 L11,5"></path>
-                      <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
-                  </a> -->
-                </div>
-              </div>
-              <div class="image-div">
-                <img src="src/webp/d2.webp" alt="netflix clone website preview image" />
-              </div>
-            </div>
-          </div>
-
-          <!-- ---------------------- -->
-
-          <div class="project-box-wrapper" data-aos="fade-up">
-            <div class="project-box project-box1" id="project-box1">
-              <div class="info-div">
-                <!-- <img src="src/webp/axocean-favicon.webp" alt="Axocean website favicon" class="faviconforProject" /> -->
-                <article class="ProjectHeading">Flash Cards WebApp</article>
-                <p class="ProjectDescription">
-                  Built a Flashcards WebApp That can be used Similar to Traditional Flashcards. Built using Flask,
-                  Python, Sqlite, etc. Please Note - The website may not be live anymore due to end of support from
-                  Replit for free app hosting.
-                </p>
-                <p class="ProjectDescription">
-                  Flask, Python, HTML, CSS, Sqlite</p>
-                <div class="project-buttons">
-                  <a href="https://github.com/ParamChordiya/Flash-Cards-Application" target="_blank"
-                    class="github-redirect" aria-label="Visit flashcards on GitHub">
-                    <img src="src/svg/github.svg" alt="github redirect button" />
-                  </a>
-                  <a href="https://c15aa7ea-e3a0-4aad-8f24-9b76657ff30f-00-p39492p9pytv.pike.replit.dev/"
-                    target="_blank" class="cta" aria-label="Visit axocean live">
-                    <span>Live view</span>
-                    <svg viewBox="0 0 13 10" height="10px" width="15px">
-                      <path d="M1,5 L11,5"></path>
-                      <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-              <div class="image-div">
-                <img src="src/webp/d3.webp" alt="flashcards image" />
-              </div>
-            </div>
-          </div>
-          <!-- ---------------------- -->
-        </div>
-      </div>
-    </section>
-
-
-  </main>
-  <!-- main ends here -->
-
-  <footer id="footer">
-    <button class="fas" id="backtotopbutton" onclick="scrolltoTopfunction()">
-      <article aria-label="Back to top">&#8592;BACK TO TOP</article>
-    </button>
-    <div class="footer-background">
-      <div class="footer-blob"></div>
-    </div>
-    <div class="footer-foreground">
-      <div class="footercontainer">
-        <div class="two-words">
-          <article tabindex="0" aria-label="Growing, Innovating, and Inspiring Change.">
-            "Growing, Innovating, and Inspiring Change."
           </article>
-        </div>
-        <div class="social-media-container">
-          <div class="getintouch-heading">
-            <article>GetinTouch();</article>
-          </div>
-          <div class="logos">
-            <a href="https://www.instagram.com/justbeingparam" target="_blank" tabindex="0"
-              aria-label="My instagram"><svg viewBox="0 0 448 512" class="SocialHandle">
-                <path
-                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-              </svg></a>
 
-            <a href="https://www.linkedin.com/in/paramchordiya" target="_blank" aria-label="My Linkdin"><svg
-                class="SocialHandle" viewBox="0 0 448 512">
-                <path
-                  d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
-              </svg></a>
-
-            <a href="https://github.com/paramchordiya" target="_blank" aria-label="My github"><svg viewBox="0 0 496 512"
-                class="SocialHandle">
-                <path
-                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
-              </svg></a>
-
-            <a href="mailto:param1111.chordiya@gmail.com" target="_blank" aria-label="My G mail"><svg id="GmailLogo"
-                viewBox="0 0 512 512">
-                <path
-                  d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />
-              </svg></a>
-          </div>
-        </div>
-        <div class="footer-avatar-container">
-          <img src="src/png/IMG_6401.png" alt="animation-head" class="footer-avatar-img" id="footer-wala-avatar" />
-          <div class="footer-avatar-face">
-            <div class="footer-avatar-eye footer-left-eye">
-              <div class="footer-pupil"></div>
+          <article id="work" data-aos="fade-up" data-aos-delay="400">
+            <div>
+              <p class="jello">I</p>
             </div>
-            <div class="footer-avatar-eye footer-right-eye">
-              <div class="footer-pupil"></div>
+            <div>
+              <p class="jello">b</p>
+              <p class="jello">u</p>
+              <p class="jello">i</p>
+              <p class="jello">l</p>
+              <p class="jello">d</p>
+            </div>
+            <div>
+              <p class="jello">f</p>
+              <p class="jello">u</p>
+              <p class="jello">t</p>
+              <p class="jello">u</p>
+              <p class="jello">r</p>
+              <p class="jello">e</p>
+            </div>
+            <div>
+              <p class="jello">t</p>
+              <p class="jello">e</p>
+              <p class="jello">c</p>
+              <p class="jello">h</p>
+            </div>
+            <div>
+              <p class="jello">l</p>
+              <p class="jello">e</p>
+              <p class="jello">v</p>
+              <p class="jello">e</p>
+              <p class="jello">r</p>
+              <p class="jello">a</p>
+              <p class="jello">g</p>
+              <p class="jello">i</p>
+              <p class="jello">n</p>
+              <p class="jello">g</p>
+            </div>
+            <div>
+              <p class="jello">A</p>
+              <p class="jello">I</p>
+            </div>
+            <div>
+              <p class="jello">&</p>
+            </div>
+            <div>
+              <p class="jello">M</p>
+              <p class="jello">L</p>
+              <p class="jello">.</p>
+            </div>
+          </article>
+          <p id="info-para" data-aos="fade-up" data-aos-delay="600">
+            Machine Learning Engineer with expertise in Computer Vision and
+            Natural Language Processing. I am passionate about developing
+            innovative AI solutions and collaborating on cutting-edge projects.
+            <br /><br />
+            I value robust algorithm design, efficient model architectures, and
+            impactful real-world applications.
+          </p>
+
+          <div class="contact-btn-div" data-aos="fade-up" data-aos-delay="800">
+            <a href="mailto:param1111.chordiya@gmail.com" tabindex="-1">
+              <button class="letsTalkBtn">
+                <p class="letsTalkBtn-text">Let's Talk!</p>
+                <span class="letsTalkBtn-BG"></span>
+              </button>
+            </a>
+            <div class="setting-container" id="setting-container">
+              <input
+                type="checkbox"
+                id="switchforsetting"
+                onclick="settingtoggle()"
+              />
+              <label
+                for="switchforsetting"
+                class="needtobeinvert"
+                id="labelforsetting"
+                tabindex="0"
+                aria-label="settings for sound and appearance"
+              ></label>
+
+              <div
+                class="visualmodetogglebuttoncontainer"
+                id="visualmodetogglebuttoncontainer"
+              >
+                <input
+                  type="checkbox"
+                  id="switchforvisualmode"
+                  onclick="visualmode()"
+                />
+                <label
+                  for="switchforvisualmode"
+                  id="labelforvisualmode"
+                  tabindex="0"
+                  aria-label="switch appearance"
+                ></label>
+              </div>
+
+              <div
+                class="soundtogglebuttoncontainer"
+                id="soundtogglebuttoncontainer"
+              >
+                <input
+                  type="checkbox"
+                  id="switchforsound"
+                  onclick="playpause()"
+                />
+                <label
+                  for="switchforsound"
+                  id="labelforsound"
+                  tabindex="0"
+                  aria-label="switch sound"
+                  class="needtobeinvert"
+                ></label>
+              </div>
+            </div>
+            <!-- setting div ends -->
+          </div>
+          <!-- contact-btn-div -->
+        </div>
+      </section>
+      <!-- landing page ends here -->
+
+      <section
+        class="about-section-container"
+        id="about"
+        data-aos="fade-up"
+      >
+        <div class="about-section">
+          <div class="section-heading">
+            <h2
+              class="section-heading-article"
+              tabindex="0"
+              aria-label="About me heading"
+            >
+              &#60;/AboutMe&#62;
+            </h2>
+            <p class="sectionHeadingP"></p>
+          </div>
+
+          <div class="info-dp-section">
+            <div class="about-info">
+              <p tabindex="0">
+                Hello! I'm Param, currently pursuing my Master's degree at UC
+                San Diego and recently had a chance of honing my skills as a
+                Machine Learning intern at 7Next R&D Division of 7-Eleven. My
+                world revolves around the exciting realms of ML and data
+                science, where I explore the depths of Computer Vision,
+                encodings, RAGs, and Generative AI to enhance search
+                algorithms and tackle high-impact projects.
+              </p>
+
+              <br />
+              <p tabindex="0">
+                My focus is on pushing the boundaries of AI and ML, coding
+                innovative solutions from the ground up, and transforming
+                visionary ideas into reality. I'm dedicated to excelling in
+                cutting-edge technology and making a significant impact in
+                the world of AI.
+              </p>
+
+              <!-- Resume button -->
+              <button class="resume-btn" id="resume-btn" onclick="openURL()">
+                <div class="sign">
+                  <svg viewBox="0 0 640 512">
+                    <path
+                      d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"
+                    />
+                  </svg>
+                </div>
+                <div class="text">Resume</div>
+              </button>
+            </div>
+
+            <div class="dp" data-aos="fade-up">
+              <img
+                src="src/png/img_prof.jpg"
+                alt="Param Chordiya"
+                tabindex="0"
+                aria-label="image of param"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- about section ends  -->
+
+      <section class="skills-section-container" id="skills">
+        <div class="skills-section">
+          <div class="section-heading" data-aos="fade-up">
+            <h2
+              class="section-heading-article"
+              tabindex="0"
+              aria-label="skills heading"
+            >
+              &#60;/Skills&#62;
+            </h2>
+            <p class="sectionHeadingP"></p>
+          </div>
+
+          <div class="frontend-dev-section">
+            <h3
+              class="frontend-dev-heading"
+              data-aos="fade-up"
+              tabindex="0"
+              aria-label="As a Machine Learning Engineer, I bring a diverse arsenal of skills to the table"
+            >
+              Tech Stack
+            </h3>
+            <ul class="tech-stack-wrapper">
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="src/icons/Anaconda.png"
+                  alt="Anaconda"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Anaconda</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/AWS.png"
+                  alt="AWS"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">AWS</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Bootstrap.png"
+                  alt="Bootstrap"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Bootstrap</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Flask.png"
+                  alt="Flask"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Flask</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Git.png"
+                  alt="Git"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Git</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/GitHub.png"
+                  alt="GitHub"
+                  class="tech-stack-logo needtobeinvert"
+                />
+                <span class="tooltip">GitHub</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/GitLab.png"
+                  alt="GitLab"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">GitLab</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/HTML5.png"
+                  alt="HTML5"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">HTML5</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Jupyter.png"
+                  alt="Jupyter"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Jupyter</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Kaggle.png"
+                  alt="Kaggle"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Kaggle</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Keras.png"
+                  alt="Keras"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Keras</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Linux.png"
+                  alt="Linux"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Linux</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/MongoDB.png"
+                  alt="MongoDB"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">MongoDB</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/OpenCV.png"
+                  alt="OpenCV"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">OpenCV</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Pandas.png"
+                  alt="Pandas"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Pandas</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Python.png"
+                  alt="Python"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">Python</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/PyTorch.png"
+                  alt="PyTorch"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">PyTorch</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/scikit-learn.png"
+                  alt="SKLearn"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">SKLearn</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/SQLite.png"
+                  alt="SQLite"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">SQLite</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/TensorFlow.png"
+                  alt="TensorFlow"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">TensorFlow</span>
+              </li>
+              <li class="tech-stack-box" data-aos="fade-up">
+                <img
+                  src="./src/icons/Visual Studio Code (VS Code).png"
+                  alt="VS Code"
+                  class="tech-stack-logo"
+                />
+                <span class="tooltip">VS Code</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- skills section ends -->
+
+      <!-- PUBLICATIONS SECTION (SAME STYLE AS PROJECTS) -->
+      <section class="projects-section-container" id="publications">
+        <div class="projects-section-div">
+          <div class="section-heading" data-aos="fade-up">
+            <h2
+              class="section-heading-article"
+              tabindex="0"
+              aria-label="My publications starts from here"
+            >
+              &#60;/Publications&#62;
+            </h2>
+            <p class="sectionHeadingP"></p>
+          </div>
+          <div class="project-boxes-div">
+            <!-- SAMPLE PUBLICATION 1 -->
+          <div class="project-box-wrapper" data-aos="fade-up">
+            <!-- Enforce block layout instead of flex: -->
+            <div class="project-box project-box4" id="publication-box1" style="display: block;">
+              <!-- Force the info-div to take full width: -->
+              <div class="info-div" style="width: 100%; margin-right: 0;">
+                <article class="ProjectHeading">
+                  Sign Language Video Generation from Text Using Generative Adversarial Networks
+                </article>
+                <p class="ProjectDescription">
+                  This work presents a technique developed by utilizing Generative Adversarial Networks (GANs) to generate Sign Language videos. Sign Language is the main mode of communication for people in the hearing impaired community...
+                </p>
+                <p class="ProjectDescription">
+                  (Optical Memory and Neural Networks, 2024/12, Volume 33, Issue 4)
+                </p>
+                <div class="project-buttons">
+                  <a
+                    href="https://link.springer.com/article/10.3103/S1060992X24700851"
+                    target="_blank"
+                    class="cta"
+                    aria-label="View Publication PDF"
+                  >
+                    <span>View Publication</span>
+                    <svg viewBox="0 0 13 10" height="10px" width="15px">
+                      <path d="M1,5 L11,5"></path>
+                      <polyline points="8 1 12 5 8 9"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+            <!-- SAMPLE PUBLICATION 2 -->
+            <!-- <div class="project-box-wrapper" data-aos="fade-up">
+              <div class="project-box project-box4" id="publication-box2">
+                <div class="info-div">
+                  <article class="ProjectHeading">
+                    Publication Title 2
+                  </article>
+                  <p class="ProjectDescription">
+                    Brief description or abstract snippet for Publication #2.
+                  </p>
+                  <p class="ProjectDescription">
+                    (Keywords, journal name, year, etc.)
+                  </p>
+                  <div class="project-buttons">
+                    <a
+                      href="https://example.com/publication2.pdf"
+                      target="_blank"
+                      class="cta"
+                      aria-label="View Publication PDF"
+                    >
+                      <span>View Publication</span>
+                      <svg viewBox="0 0 13 10" height="10px" width="15px">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="image-div">
+                  <img
+                    src="src/png/placeholder_pub2.png"
+                    alt="Publication 2 Preview Image"
+                  />
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </section>
+      <!-- PUBLICATIONS SECTION ENDS -->
+
+      <section class="projects-section-container" id="projects">
+        <div class="projects-section-div">
+          <div class="section-heading" data-aos="fade-up">
+            <h2
+              class="section-heading-article"
+              tabindex="0"
+              aria-label="My projects starts from here"
+            >
+              &#60;/Projects&#62;
+            </h2>
+            <p class="sectionHeadingP"></p>
+          </div>
+          <div class="project-boxes-div">
+            <!-- ---------------------- -->
+            <div class="project-box-wrapper" data-aos="fade-up">
+              <div class="project-box project-box4" id="project-box4">
+                <div class="info-div">
+                  <article class="ProjectHeading">
+                    Nebula Nexus: A Scientific Paper Query Tool
+                  </article>
+                  <p class="ProjectDescription">
+                    Nebula-Nexus is a futuristic PDF question-answering
+                    assistant for research papers, powered by
+                    Retrieval-Augmented Generation (RAG). This tool allows
+                    users to upload any PDF and receive precise answers to
+                    their questions based on the content of the research
+                    paper.
+                  </p>
+                  <p class="ProjectDescription">
+                    Langchain, RAG, LLM, Transformers
+                  </p>
+                  <div class="project-buttons">
+                    <a
+                      href="https://github.com/ParamChordiya/Nebula-Nexus.git"
+                      target="_blank"
+                      class="github-redirect"
+                      aria-label="Visit Nebula Nexus on GitHub"
+                    >
+                      <img
+                        src="src/svg/github.svg"
+                        alt="github redirect button"
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="image-div">
+                  <img
+                    src="src/png/neb_nexus.jpeg"
+                    alt="Nebula Nexus preview image"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------------------- -->
+            <div class="project-box-wrapper" data-aos="fade-up">
+              <div class="project-box project-box4" id="project-box4">
+                <div class="info-div">
+                  <article class="ProjectHeading">
+                    Kidney Disease Detection
+                  </article>
+                  <p class="ProjectDescription">
+                    Developed custom ensemble model combining pre-trained
+                    CNN for feature learning with a classification model on
+                    reduced features
+                  </p>
+                  <p class="ProjectDescription">
+                    VGG16, VGG19, ResNet, MobileNet, Boosting Algorithms,
+                    Flask, Python, TensorFlow
+                  </p>
+                  <div class="project-buttons">
+                    <a
+                      href="https://drive.google.com/file/d/1TNyKbqT65yNiFutbk0PD2etrb0zricMu/view"
+                      target="_blank"
+                      class="cta"
+                      aria-label="View live demonstration or details"
+                    >
+                      <span>Live view</span>
+                      <svg viewBox="0 0 13 10" height="10px" width="15px">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="image-div">
+                  <img src="src/webp/d1.webp" alt="kidney detection preview" />
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------------------- -->
+            <div class="project-box-wrapper" data-aos="fade-up">
+              <div class="project-box project-box3" id="project-box3">
+                <div class="info-div">
+                  <article class="ProjectHeading">
+                    Recommendation System
+                  </article>
+                  <p class="ProjectDescription">
+                    Build a Recommendation System using ML model (SVD) to
+                    provide recommendations to the users based on their
+                    interests and requirements, along with user login and
+                    authentication.
+                  </p>
+                  <p class="ProjectDescription">SVD, Python</p>
+                  <div class="project-buttons">
+                    <a
+                      href="https://github.com/ParamChordiya/Bajaj-Finserv-Hack-RX-2.0-2022"
+                      target="_blank"
+                      class="github-redirect"
+                      aria-label="Visit Recommendation System on GitHub"
+                    >
+                      <img
+                        src="src/svg/github.svg"
+                        alt="github redirect button"
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="image-div">
+                  <img src="src/webp/d2.webp" alt="recommendation system" />
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------------------- -->
+            <div class="project-box-wrapper" data-aos="fade-up">
+              <div class="project-box project-box1" id="project-box1">
+                <div class="info-div">
+                  <article class="ProjectHeading">Flash Cards WebApp</article>
+                  <p class="ProjectDescription">
+                    Built a Flashcards WebApp that can be used similarly to
+                    traditional flashcards. Built using Flask, Python,
+                    Sqlite, etc.  
+                    Please Note - The website may not be live anymore due to
+                    end of support from Replit for free app hosting.
+                  </p>
+                  <p class="ProjectDescription">
+                    Flask, Python, HTML, CSS, Sqlite
+                  </p>
+                  <div class="project-buttons">
+                    <a
+                      href="https://github.com/ParamChordiya/Flash-Cards-Application"
+                      target="_blank"
+                      class="github-redirect"
+                      aria-label="Visit flashcards on GitHub"
+                    >
+                      <img
+                        src="src/svg/github.svg"
+                        alt="github redirect button"
+                      />
+                    </a>
+                    <a
+                      href="https://c15aa7ea-e3a0-4aad-8f24-9b76657ff30f-00-p39492p9pytv.pike.replit.dev/"
+                      target="_blank"
+                      class="cta"
+                      aria-label="Visit flashcards live"
+                    >
+                      <span>Live view</span>
+                      <svg viewBox="0 0 13 10" height="10px" width="15px">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="image-div">
+                  <img src="src/webp/d3.webp" alt="flashcards image" />
+                </div>
+              </div>
+            </div>
+            <!-- ---------------------- -->
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- main ends here -->
+
+    <footer id="footer">
+      <button class="fas" id="backtotopbutton" onclick="scrolltoTopfunction()">
+        <article aria-label="Back to top">&#8592;BACK TO TOP</article>
+      </button>
+      <div class="footer-background">
+        <div class="footer-blob"></div>
+      </div>
+      <div class="footer-foreground">
+        <div class="footercontainer">
+          <div class="two-words">
+            <article tabindex="0" aria-label="Growing, Innovating, and Inspiring Change.">
+              "Growing, Innovating, and Inspiring Change."
+            </article>
+          </div>
+          <div class="social-media-container">
+            <div class="getintouch-heading">
+              <article>GetinTouch();</article>
+            </div>
+            <div class="logos">
+              <a
+                href="https://www.instagram.com/justbeingparam"
+                target="_blank"
+                tabindex="0"
+                aria-label="My instagram"
+              >
+                <svg viewBox="0 0 448 512" class="SocialHandle">
+                  <path
+                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7
+                    s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8
+                    s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2
+                    -37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9
+                    1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2
+                    26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6
+                    -29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6
+                    -11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1
+                    c7.8-19.6 22.9-34.7 42.6-42.6
+                    29.5-11.7 99.5-9 132.1-9
+                    s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6
+                    11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/paramchordiya"
+                target="_blank"
+                aria-label="My Linkdin"
+              >
+                <svg class="SocialHandle" viewBox="0 0 448 512">
+                  <path
+                    d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1
+                    0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0
+                    29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4
+                    c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69
+                    37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3
+                    c12.4-23.5 42.69-48.3 87.88-48.3 94 0
+                    111.28 61.9 111.28 142.3V448z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://github.com/paramchordiya"
+                target="_blank"
+                aria-label="My github"
+              >
+                <svg viewBox="0 0 496 512" class="SocialHandle">
+                  <path
+                    d="M165.9 397.4c0 2-2.3 3.6-5.2
+                    3.6-3.3.3-5.6-1.3-5.6-3.6 0-2
+                    2.3-3.6 5.2-3.6 3-.3
+                    5.6 1.3 5.6
+                    3.6zm-31.1-4.5c-.7 2
+                    1.3 4.3 4.3
+                    4.9 2.6 1 5.6 0
+                    6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2
+                    2.3zm44.2-1.7c-2.9.7-4.9
+                    2.6-4.6 4.9.3 2
+                    2.9 3.3
+                    5.9 2.6 2.9-.7
+                    4.9-2.6
+                    4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8
+                    8C106.1
+                    8 0 113.3
+                    0 252c0 110.9
+                    69.8 205.8
+                    169.5 239.2 12.8
+                    2.3 17.3-5.6
+                    17.3-12.1 0-6.2-.3-40.4-.3-61.4
+                    0 0-70
+                    15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0
+                    0-22.9-15.7 1.6-15.4 0 0
+                    24.9 2
+                    38.6 25.8 21.9
+                    38.6 58.6 27.5
+                    72.9 20.9 2.3-16
+                    8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5
+                    0-27.5
+                    7.6-41.3
+                    23.6-58.9-2.6-6.5-11.1-33.3
+                    2.6-67.9
+                    20.9-6.5
+                    69 27
+                    69 27 20-5.6
+                    41.5-8.5
+                    62.8-8.5s42.8
+                    2.9
+                    62.8
+                    8.5c0
+                    0
+                    48.1-33.6
+                    69-27 13.7
+                    34.7
+                    5.2
+                    61.4
+                    2.6 67.9 16
+                    17.7
+                    25.8
+                    31.5
+                    25.8
+                    58.9 0
+                    96.5-58.9
+                    104.2-114.8
+                    110.5 9.2
+                    7.9
+                    17
+                    22.9
+                    17
+                    46.4 0
+                    33.7-.3
+                    75.4-.3
+                    83.6 0
+                    6.5
+                    4.6
+                    14.4
+                    17.3
+                    12.1C428.2
+                    457.8 496
+                    362.9
+                    496
+                    252 496
+                    113.3
+                    383.5
+                    8
+                    244.8
+                    8zM97.2
+                    352.9c-1.3
+                    1-1
+                    3.3.7
+                    5.2
+                    1.6
+                    1.6
+                    3.9
+                    2.3
+                    5.2
+                    1
+                    1.3-1
+                    1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7
+                    1.3.3
+                    2.9
+                    2.3
+                    3.9
+                    1.6
+                    1
+                    3.6.7
+                    4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3
+                    .7zm32.4
+                    35.6c-1.6
+                    1.3-1
+                    4.3
+                    1.3
+                    6.2
+                    2.3
+                    2.3
+                    5.2
+                    2.6
+                    6.5
+                    1
+                    1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6
+                    1-1.6
+                    3.6
+                    0
+                    5.9
+                    1.6
+                    2.3
+                    4.3
+                    3.3
+                    5.6
+                    2.3
+                    1.6-1.3
+                    1.6-3.9
+                    0-6.2-1.4-2.3-4-3.3-5.6-2z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="mailto:param1111.chordiya@gmail.com"
+                target="_blank"
+                aria-label="My G mail"
+              >
+                <svg id="GmailLogo" viewBox="0 0 512 512">
+                  <path
+                    d="M64 112c-8.8
+                    0-16
+                    7.2-16
+                    16v22.1L220.5
+                    291.7c20.7
+                    17
+                    50.4
+                    17
+                    71.1
+                    0L464
+                    150.1V128c0-8.8-7.2-16-16-16H64zM48
+                    212.2V384c0
+                    8.8
+                    7.2
+                    16
+                    16
+                    16H448c8.8
+                    0
+                    16-7.2
+                    16-16V212.2L322
+                    328.8c-38.4
+                    31.5-93.7
+                    31.5-132
+                    0L48
+                    212.2zM0
+                    128C0
+                    92.7
+                    28.7
+                    64
+                    64
+                    64H448c35.3
+                    0
+                    64
+                    28.7
+                    64
+                    64V384c0
+                    35.3-28.7
+                    64-64
+                    64H64c-35.3
+                    0-64-28.7-64-64V128z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-avatar-container">
+            <img
+              src="src/png/IMG_6401.png"
+              alt="animation-head"
+              class="footer-avatar-img"
+              id="footer-wala-avatar"
+            />
+            <div class="footer-avatar-face">
+              <div class="footer-avatar-eye footer-left-eye">
+                <div class="footer-pupil"></div>
+              </div>
+              <div class="footer-avatar-eye footer-right-eye">
+                <div class="footer-pupil"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <!-- footer ends here -->
+    </footer>
+    <!-- footer ends here -->
 
-  <script src="main.js"></script>
+    <script src="main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+    <script>
+      function openURL() {
+        var url = "src/pdf/Param Chordiya Resume.pdf";
+        window.open(url, "_blank");
+      }
+    </script>
 
-  <script>
-    function openURL() {
-      var url = "src/pdf/Param Chordiya Resume.pdf";
+    <script>
+      const cursorInner = document.getElementById("cursor-inner");
+      const cursorOuter = document.getElementById("cursor-outer");
+      const links = document.querySelectorAll("a,label,button");
 
-      window.open(url, "_blank");
-    }
-  </script>
+      document.addEventListener("mousemove", function (e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
 
-  <script>
-    const cursorInner = document.getElementById("cursor-inner");
-    const cursorOuter = document.getElementById("cursor-outer");
-    const links = document.querySelectorAll("a,label,button");
+        cursorInner.style.left = `${posX}px`;
+        cursorInner.style.top = `${posY}px`;
 
-    document.addEventListener("mousemove", function (e) {
-      const posX = e.clientX;
-      const posY = e.clientY;
+        cursorOuter.animate(
+          {
+            left: `${posX}px`,
+            top: `${posY}px`,
+          },
+          { duration: 500, fill: "forwards" }
+        );
 
-      cursorInner.style.left = `${posX}px`;
-      cursorInner.style.top = `${posY}px`;
-
-      // cursorOuter.style.left = `${posX}px`;
-      // cursorOuter.style.top = `${posY}px`;
-
-      cursorOuter.animate(
-        {
-          left: `${posX}px`,
-          top: `${posY}px`,
-        },
-        { duration: 500, fill: "forwards" }
-      );
-
-      links.forEach((link) => {
-        link.addEventListener("mouseenter", () => {
-          cursorInner.classList.add("hover");
-          cursorOuter.classList.add("hover");
-        });
-        link.addEventListener("mouseleave", () => {
-          cursorInner.classList.remove("hover");
-          cursorOuter.classList.remove("hover");
+        links.forEach((link) => {
+          link.addEventListener("mouseenter", () => {
+            cursorInner.classList.add("hover");
+            cursorOuter.classList.add("hover");
+          });
+          link.addEventListener("mouseleave", () => {
+            cursorInner.classList.remove("hover");
+            cursorOuter.classList.remove("hover");
+          });
         });
       });
-    });
-  </script>
-
-</body>
-
+    </script>
+  </body>
 </html>
