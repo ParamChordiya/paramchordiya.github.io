@@ -38,7 +38,8 @@
    
    #backtotopbutton article,
    :root {
-     font-family: Whitney, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+     font-family: Whitney, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+       Helvetica, Arial, sans-serif;
    }
    
    .eye,
@@ -191,6 +192,12 @@
      --tech-stack-box-first-color: #e7e2db;
      --tech-stack-box-second-color: #ece7e100;
      --tech-stack-box-border-color: #dad5cf;
+     & .footer-background {
+       background-color: var(--color-light-mode);
+     }
+     & .footer-bottom {
+       background-color: #e2ddd7;
+     }
    }
    
    /* ===========================================
@@ -872,8 +879,18 @@
    .sectionHeadingP,
    .skills-heading-article,
    .skillsHeadingP {
-     background-image: -webkit-gradient(linear, left top, right top, from(var(--static-heading-gradient-blue)), to(var(--static-heading-gradient-pink)));
-     background-image: -webkit-linear-gradient(left, var(--static-heading-gradient-blue), var(--static-heading-gradient-pink));
+     background-image: -webkit-gradient(
+       linear,
+       left top,
+       right top,
+       from(var(--static-heading-gradient-blue)),
+       to(var(--static-heading-gradient-pink))
+     );
+     background-image: -webkit-linear-gradient(
+       left,
+       var(--static-heading-gradient-blue),
+       var(--static-heading-gradient-pink)
+     );
    }
    
    .dp::after,
@@ -1335,7 +1352,7 @@
       Back to Top Button
       =========================================== */
    #backtotopbutton {
-    background-color: transparent;
+     background-color: transparent;
      position: fixed;
      right: 10px;
      bottom: 0;
@@ -1752,7 +1769,7 @@
      }
    
      .mobiletogglemenu {
-       background-color: transparent;
+       background-color: var(--color-dark-mode);
        z-index: 9990;
        height: 100%;
        width: 100%;
@@ -1846,6 +1863,10 @@
    
      .image-div {
        padding: 0 0 0 80px;
+     }
+   
+     .publication-info-div {
+       margin-top: 10%;
      }
    }
    
@@ -2055,3 +2076,79 @@
      }
    }
    
+   /* ===========================================
+      Gallery Section (Renamed from .dynamic-image-grid)
+      =========================================== */
+   .gallery-section-container {
+     width: 100%;
+     padding: 150px 0;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+   
+   .gallery-section-div {
+     width: 60%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+   }
+   
+   .grid-container {
+     width: 100%;
+     margin: 50px auto 0 auto;
+     display: grid;
+     /* Removed fixed row height to avoid skew */
+     /* grid-auto-rows: 300px; */
+     grid-template-columns: repeat(12, 1fr);
+     grid-gap: 20px;
+   }
+   
+   .grid-item {
+     position: relative;
+     border-radius: 20px;
+     overflow: hidden;
+     background: var(--tech-stack-box-second-color);
+     transition: transform 0.3s ease;
+   }
+   
+   .grid-item:hover {
+     transform: scale(1.02);
+   }
+   
+   .grid-item.large {
+     grid-column: span 8;
+   }
+   
+   .grid-item.medium {
+     grid-column: span 6;
+   }
+   
+   .grid-item.small {
+     grid-column: span 4;
+   }
+   
+   .grid-img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: transform 0.3s ease;
+   }
+   
+   .grid-img:hover {
+     transform: scale(1.05);
+   }
+   
+   /* ========================
+   Force single-column grid
+   on mobile
+   ======================== */
+@media screen and (max-width: 768px) {
+  /* Force each grid-item to span full width (12 columns) */
+  .grid-item.large,
+  .grid-item.medium,
+  .grid-item.small {
+    grid-column: span 12;
+  }
+}
