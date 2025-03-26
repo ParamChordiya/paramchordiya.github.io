@@ -711,6 +711,7 @@
    
    #info-para,
    .about-info p {
+    font-family: 'Mali', sans-serif;
      font-weight: 400;
      font-size: 2rem;
    }
