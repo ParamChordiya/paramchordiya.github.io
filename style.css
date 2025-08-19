@@ -89,6 +89,14 @@
      -webkit-font-smoothing: antialiased;
    }
    
+   /* Edu NSW ACT Cursive Font */
+   .edu-nsw-act-cursive {
+     font-family: "Edu NSW ACT Cursive", cursive;
+     font-optical-sizing: auto;
+     font-weight: 400;
+     font-style: normal;
+   }
+   
    :root {
      cursor: default;
      --color-white: #fff;
@@ -107,6 +115,14 @@
      --tech-stack-box-first-color: #1a1a29;
      --tech-stack-box-second-color: rgba(27, 27, 40, 0);
      --tech-stack-box-border-color: #292929;
+   }
+   
+   /* Edu NSW ACT Cursive Font */
+   .edu-nsw-act-cursive-param {
+     font-family: "Edu NSW ACT Cursive", cursive;
+     font-optical-sizing: auto;
+     font-weight: 700;
+     font-style: normal;
    }
    
    #hello-friend,
