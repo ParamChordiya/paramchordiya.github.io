@@ -38,7 +38,7 @@
    
    #backtotopbutton article,
    :root {
-     font-family: Whitney, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
        Helvetica, Arial, sans-serif;
    }
    
@@ -92,14 +92,6 @@
      -webkit-font-smoothing: antialiased;
    }
    
-   /* Edu NSW ACT Cursive Font */
-   .edu-nsw-act-cursive {
-     font-family: "Edu NSW ACT Cursive", cursive;
-     font-optical-sizing: auto;
-     font-weight: 400;
-     font-style: normal;
-   }
-   
    :root {
      cursor: default;
      --color-white: #fff;
@@ -120,21 +112,13 @@
      --tech-stack-box-border-color: #292929;
    }
    
-   /* Edu NSW ACT Cursive Font */
-   .edu-nsw-act-cursive-param {
-     font-family: "Edu NSW ACT Cursive", cursive;
-     font-optical-sizing: auto;
-     font-weight: 700;
-     font-style: normal;
-   }
-   
    #hello-friend,
    .footer-bottom article,
    .getintouch-heading article,
    .language-speak article,
    .navbar-tabs-ul li,
    .two-words article {
-     font-family: "fira code";
+     font-family: "JetBrains Mono", monospace;
    }
    
    ::-webkit-scrollbar {
@@ -433,7 +417,7 @@
      display: flex;
      list-style: none;
      justify-content: flex-end;
-     gap: 80px;
+     gap: 50px;
      color: var(--color-white);
    }
    
@@ -645,8 +629,9 @@
    #work {
      font-size: 8rem;
      width: fit-content;
+     font-family: "Space Grotesk", sans-serif;
    }
-   
+
    #name,
    #work,
    .letsTalkBtn-text {
@@ -740,7 +725,7 @@
    
    #info-para,
    .about-info p {
-    font-family: 'Mali', sans-serif;
+     font-family: "Inter", sans-serif;
      font-weight: 400;
      font-size: 2rem;
    }
@@ -1025,7 +1010,7 @@
    .section-heading-article,
    .skills-heading-article {
      font-size: 3rem;
-     font-family: "fira code";
+     font-family: "JetBrains Mono", monospace;
      font-weight: 500;
      background-image: linear-gradient(
        90deg,
@@ -1166,8 +1151,11 @@
    .tech-stack-wrapper {
      justify-content: center;
      flex-wrap: wrap;
-     gap: 50px;
+     gap: 30px;
      margin-top: 50px;
+     max-width: 650px;
+     margin-left: auto;
+     margin-right: auto;
    }
    
    .tech-stack-box,
@@ -1177,10 +1165,10 @@
    }
    
    .tech-stack-box {
-     width: 160px;
-     height: 160px;
+     width: 100px;
+     height: 100px;
      justify-content: center;
-     border-radius: 30px;
+     border-radius: 20px;
      border: 1px solid var(--tech-stack-box-border-color);
      position: relative;
    }
@@ -1297,12 +1285,14 @@
      color: var(--color-white);
      font-size: 3.4rem;
      font-weight: 700;
+     font-family: "Space Grotesk", sans-serif;
    }
-   
+
    .ProjectDescription {
      color: gray;
      font-size: 1.7rem;
      font-weight: 400;
+     font-family: "Inter", sans-serif;
    }
    
    .project-buttons {
@@ -1477,6 +1467,7 @@
    
    .two-words article {
      font-size: 3rem;
+     font-family: "Space Grotesk", sans-serif;
    }
    
    .social-media-container {
@@ -1841,7 +1832,7 @@
        font-weight: 600;
        position: relative;
        cursor: pointer;
-       font-family: "fira code";
+       font-family: "JetBrains Mono", monospace;
        height: 30px;
        width: fit-content;
      }
@@ -2018,14 +2009,15 @@
      }
    
      .tech-stack-wrapper {
-       display: grid;
-       grid-template-columns: 1fr 1fr;
-       gap: 20px;
+       display: flex;
+       max-width: 100%;
+       gap: 15px;
      }
-   
+
      .tech-stack-box {
-       width: 100%;
-       height: calc(76vw / 2);
+       width: 70px;
+       height: 70px;
+       border-radius: 15px;
      }
    }
    

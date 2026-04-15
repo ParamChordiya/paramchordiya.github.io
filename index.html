@@ -64,14 +64,9 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Google Fonts -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Passions+Conflict&family=Orbitron&family=Fira+Code&family=Six+Caps"
-    />
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Playwrite+DE+Grund:wght@100..400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -168,38 +163,38 @@
               data-aos-delay="100"
             >
               <a href="#home" tabindex="0" aria-label="Home menu button">
-                &#60;/Home&#62;
+                init()
               </a>
             </li>
 
             <li class="about" data-aos="fade-down" data-aos-delay="300">
               <a href="#about" aria-label="about menu button">
-                &#60;/AboutMe&#62;
+                about()
               </a>
             </li>
 
             <li class="skills" data-aos="fade-down" data-aos-delay="500">
               <a href="#skills" aria-label="skills menu button">
-                &#60;/Skills&#62;
+                layers()
               </a>
             </li>
 
             <li class="publications" data-aos="fade-down" data-aos-delay="600">
               <a href="#publications" aria-label="publications menu button">
-                &#60;/Publications&#62;
+                research()
               </a>
             </li>
 
             <li class="projects" data-aos="fade-down" data-aos-delay="700">
               <a href="#projects" aria-label="projects menu button">
-                &#60;/Projects&#62;
+                predict()
               </a>
             </li>
-            
+
             <!-- New GALLERY NAV TAB -->
             <li class="gallery" data-aos="fade-down" data-aos-delay="800">
               <a href="#gallery" aria-label="gallery menu button">
-                &#60;/Gallery&#62;
+                visualize()
               </a>
             </li>
           </ul>
@@ -233,7 +228,7 @@
             onclick="hidemenubyli()"
           >
             <a href="#home" tabindex="0" aria-label="Home menu button">
-              &#60;/Home&#62;
+              init()
             </a>
           </li>
 
@@ -243,7 +238,7 @@
             onclick="hidemenubyli()"
           >
             <a href="#about" tabindex="0" aria-label="about menu button">
-              &#60;/AboutMe&#62;
+              about()
             </a>
           </li>
           <li
@@ -252,7 +247,7 @@
             onclick="hidemenubyli()"
           >
             <a href="#skills" tabindex="0" aria-label="skills menu button">
-              &#60;/Skills&#62;
+              layers()
             </a>
           </li>
 
@@ -262,7 +257,7 @@
             onclick="hidemenubyli()"
           >
             <a href="#publications" tabindex="0" aria-label="publications menu button">
-              &#60;/Publications&#62;
+              research()
             </a>
           </li>
 
@@ -272,7 +267,7 @@
             onclick="hidemenubyli()"
           >
             <a href="#projects" tabindex="0" aria-label="projects menu button">
-              &#60;/Projects&#62;
+              predict()
             </a>
           </li>
 
@@ -283,7 +278,7 @@
             onclick="hidemenubyli()"
           >
             <a href="#gallery" tabindex="0" aria-label="gallery menu button">
-              &#60;/Gallery&#62;
+              visualize()
             </a>
           </li>
         </ul>
@@ -461,7 +456,7 @@
               tabindex="0"
               aria-label="About me heading"
             >
-              &#60;/AboutMe&#62;
+              model.about()
             </h2>
             <p class="sectionHeadingP"></p>
           </div>
@@ -511,29 +506,13 @@
               tabindex="0"
               aria-label="skills heading"
             >
-              &#60;/Skills&#62;
+              model.layers()
             </h2>
             <p class="sectionHeadingP"></p>
           </div>
 
           <div class="frontend-dev-section">
-            <h3
-              class="frontend-dev-heading"
-              data-aos="fade-up"
-              tabindex="0"
-              aria-label="As a Machine Learning Engineer, I bring a diverse arsenal of skills to the table"
-            >
-              Tech Stack
-            </h3>
             <ul class="tech-stack-wrapper">
-              <li class="tech-stack-box" data-aos="fade-up">
-                <img
-                  src="src/icons/Anaconda.png"
-                  alt="Anaconda"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">Anaconda</span>
-              </li>
               <li class="tech-stack-box" data-aos="fade-up">
                 <img
                   src="./src/icons/AWS.png"
@@ -541,22 +520,6 @@
                   class="tech-stack-logo"
                 />
                 <span class="tooltip">AWS</span>
-              </li>
-              <li class="tech-stack-box" data-aos="fade-up">
-                <img
-                  src="./src/icons/Bootstrap.png"
-                  alt="Bootstrap"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">Bootstrap</span>
-              </li>
-              <li class="tech-stack-box" data-aos="fade-up">
-                <img
-                  src="./src/icons/Flask.png"
-                  alt="Flask"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">Flask</span>
               </li>
               <li class="tech-stack-box" data-aos="fade-up">
                 <img
@@ -568,52 +531,12 @@
               </li>
               <li class="tech-stack-box" data-aos="fade-up">
                 <img
-                  src="./src/icons/GitHub.png"
-                  alt="GitHub"
-                  class="tech-stack-logo needtobeinvert"
-                />
-                <span class="tooltip">GitHub</span>
-              </li>
-              <li class="tech-stack-box" data-aos="fade-up">
-                <img
-                  src="./src/icons/GitLab.png"
-                  alt="GitLab"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">GitLab</span>
-              </li>
-              <li class="tech-stack-box" data-aos="fade-up">
-                <img
-                  src="./src/icons/HTML5.png"
-                  alt="HTML5"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">HTML5</span>
-              </li>
-              <li class="tech-stack-box" data-aos="fade-up">
-                <img
                   src="./src/icons/Jupyter.png"
                   alt="Jupyter"
                   class="tech-stack-logo"
                 />
                 <span class="tooltip">Jupyter</span>
               </li>
-              <!-- <li class="tech-stack-box" data-aos="fade-up">
-                <img
-                  src="./src/icons/Kaggle.png"
-                  alt="Kaggle"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">Kaggle</span>
-              </li> -->
-              <!-- <li class="tech-stack-box" data-aos="fade-up">
-                <img
-                  src="./src/icons/Keras.png"
-                  alt="Keras"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">Keras</span>
-              </li> -->
               <li class="tech-stack-box" data-aos="fade-up">
                 <img
                   src="./src/icons/Linux.png"
@@ -621,14 +544,6 @@
                   class="tech-stack-logo"
                 />
                 <span class="tooltip">Linux</span>
-              </li>
-              <li class="tech-stack-box" data-aos="fade-up">
-                <img
-                  src="./src/icons/MongoDB.png"
-                  alt="MongoDB"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">MongoDB</span>
               </li>
               <li class="tech-stack-box" data-aos="fade-up">
                 <img
@@ -672,27 +587,11 @@
               </li>
               <li class="tech-stack-box" data-aos="fade-up">
                 <img
-                  src="./src/icons/SQLite.png"
-                  alt="SQLite"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">SQLite</span>
-              </li>
-              <li class="tech-stack-box" data-aos="fade-up">
-                <img
                   src="./src/icons/TensorFlow.png"
                   alt="TensorFlow"
                   class="tech-stack-logo"
                 />
                 <span class="tooltip">TensorFlow</span>
-              </li>
-              <li class="tech-stack-box" data-aos="fade-up">
-                <img
-                  src="./src/icons/Visual Studio Code (VS Code).png"
-                  alt="VS Code"
-                  class="tech-stack-logo"
-                />
-                <span class="tooltip">VS Code</span>
               </li>
             </ul>
           </div>
@@ -709,7 +608,7 @@
               tabindex="0"
               aria-label="My publications starts from here"
             >
-              &#60;/Publications&#62;
+              model.research()
             </h2>
             <p class="sectionHeadingP"></p>
           </div>
@@ -792,7 +691,7 @@
               tabindex="0"
               aria-label="My projects starts from here"
             >
-              &#60;/Projects&#62;
+              model.predict()
             </h2>
             <p class="sectionHeadingP"></p>
           </div>
@@ -1011,7 +910,7 @@
               tabindex="0"
               aria-label="My gallery section starts here"
             >
-              &#60;/Gallery&#62;
+              model.visualize()
             </h2>
             <p class="sectionHeadingP"></p>
           </div>
