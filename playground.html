@@ -127,6 +127,85 @@
         font-family: "Inter", sans-serif;
       }
 
+      /* Gradient Descent Controls */
+      .gd-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        margin-top: 16px;
+        flex-wrap: wrap;
+      }
+
+      .gd-control-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .gd-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.2rem;
+        color: var(--color-white);
+        opacity: 0.5;
+        white-space: nowrap;
+      }
+
+      .gd-slider {
+        -webkit-appearance: none;
+        width: 140px;
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(128, 0, 255, 0.15);
+        outline: none;
+      }
+
+      .gd-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--color-purple);
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(128, 0, 255, 0.4);
+      }
+
+      .gd-slider::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--color-purple);
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 0 10px rgba(128, 0, 255, 0.4);
+      }
+
+      .gd-reset-btn {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.1rem;
+        padding: 5px 14px;
+        border-radius: 6px;
+        background: rgba(128, 0, 255, 0.1);
+        color: var(--color-purple);
+        border: 1px solid rgba(128, 0, 255, 0.15);
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+      }
+
+      .gd-reset-btn:hover {
+        background: rgba(128, 0, 255, 0.2);
+        border-color: var(--color-purple);
+      }
+
+      .gd-loss-display {
+        text-align: center;
+        margin-top: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.2rem;
+        color: var(--color-purple);
+        opacity: 0.7;
+      }
+
       /* Experiments Cards */
       .pg-experiments {
         margin-bottom: 80px;
@@ -389,15 +468,31 @@
           <p class="nn-hint">Click anywhere to trigger a forward pass &mdash; hover nodes to inspect connections</p>
         </section>
 
+        <!-- Gradient Descent Roller -->
+        <section class="nn-section">
+          <h2 class="nn-title">Gradient Descent Roller</h2>
+          <div class="nn-canvas-wrapper">
+            <canvas id="gd-canvas"></canvas>
+          </div>
+          <div class="gd-controls">
+            <div class="gd-control-row">
+              <label class="gd-label">lr: <span id="gd-lr-val">0.050</span></label>
+              <input type="range" id="gd-lr" min="0" max="100" value="50" class="gd-slider" />
+            </div>
+            <div class="gd-control-row">
+              <label class="gd-label">momentum: <span id="gd-mom-val">0.90</span></label>
+              <input type="range" id="gd-momentum" min="0" max="99" value="90" class="gd-slider" />
+            </div>
+            <button id="gd-reset" class="gd-reset-btn">reset()</button>
+          </div>
+          <p class="nn-hint">Click to place the ball &mdash; watch gradient descent find the minimum</p>
+          <p class="gd-loss-display" id="gd-loss-display">loss: 0.000</p>
+        </section>
+
         <!-- Coming Soon Cards -->
         <section class="pg-experiments">
           <h2 class="pg-experiments-title">More experiments coming soon...</h2>
           <div class="pg-cards-grid">
-            <div class="pg-card">
-              <h3>Gradient Descent Roller</h3>
-              <p>Watch a ball find the global minimum in a 3D loss landscape. Interactive controls let you tweak learning rate and momentum in real time.</p>
-              <span class="pg-card-badge">coming soon</span>
-            </div>
             <div class="pg-card">
               <h3>Token Predictor</h3>
               <p>A tiny transformer that tries to guess your next word. Type a sentence and watch attention heads light up as it predicts.</p>
@@ -875,6 +970,345 @@
           requestAnimationFrame(animate);
         }
 
+        window.addEventListener('resize', resize);
+        resize();
+        requestAnimationFrame(animate);
+      })();
+
+      // ==========================================
+      // Gradient Descent Roller
+      // ==========================================
+      (function() {
+        var canvas = document.getElementById('gd-canvas');
+        var ctx = canvas.getContext('2d');
+
+        var COLORS = {
+          purple: '#8000ff',
+          blue: '#6bc5f8',
+          pink: '#cf59e6',
+          bg: '#11111b'
+        };
+
+        var DOMAIN = { xMin: -4, xMax: 4, yMin: -4, yMax: 4 };
+        var width, height, dpr;
+        var landscapeImg = null;
+
+        // State
+        var ballX = -2.5, ballY = 2.5;
+        var velX = 0, velY = 0;
+        var learningRate = 0.05;
+        var momentum = 0.9;
+        var trail = [];
+        var MAX_TRAIL = 300;
+
+        // Loss landscape: multiple peaks and valleys
+        function loss(x, y) {
+          var r = x * x + y * y;
+          var v = Math.sin(x * 1.2) * Math.cos(y * 1.2) * Math.exp(-0.04 * r);
+          v += 0.6 * Math.sin(1.8 * x + 0.5) * Math.sin(1.8 * y - 0.3) * Math.exp(-0.03 * ((x - 1) * (x - 1) + (y - 1) * (y - 1)));
+          v -= 1.8 * Math.exp(-((x - 0.5) * (x - 0.5) + (y + 0.8) * (y + 0.8)) / 0.4);
+          v += 0.4 * Math.exp(-(( x + 1.5) * (x + 1.5) + (y - 1.5) * (y - 1.5)) / 0.5);
+          return v;
+        }
+
+        function gradient(x, y) {
+          var h = 0.001;
+          return {
+            dx: (loss(x + h, y) - loss(x - h, y)) / (2 * h),
+            dy: (loss(x, y + h) - loss(x, y - h)) / (2 * h)
+          };
+        }
+
+        function worldToCanvas(wx, wy) {
+          return {
+            x: (wx - DOMAIN.xMin) / (DOMAIN.xMax - DOMAIN.xMin) * width,
+            y: (wy - DOMAIN.yMin) / (DOMAIN.yMax - DOMAIN.yMin) * height
+          };
+        }
+
+        function canvasToWorld(cx, cy) {
+          return {
+            x: DOMAIN.xMin + cx / width * (DOMAIN.xMax - DOMAIN.xMin),
+            y: DOMAIN.yMin + cy / height * (DOMAIN.yMax - DOMAIN.yMin)
+          };
+        }
+
+        // Color mapping: high loss -> purple, low -> blue/cyan glow
+        function lossToColor(v, vMin, vMax) {
+          var t = (v - vMin) / (vMax - vMin);
+          t = Math.max(0, Math.min(1, t));
+
+          // Purple (high) -> blue (mid) -> dark teal (low, global min)
+          var r, g, b;
+          if (t > 0.5) {
+            var s = (t - 0.5) * 2; // 0-1
+            r = Math.round(30 + s * 98);     // 30 -> 128
+            g = Math.round(20 + (1 - s) * 40); // 60 -> 20
+            b = Math.round(60 + s * 195);    // 60 -> 255
+          } else {
+            var s = t * 2; // 0-1
+            r = Math.round(15 + s * 15);      // 15 -> 30
+            g = Math.round(80 + (1 - s) * 120); // 200 -> 80
+            b = Math.round(100 + (1 - s) * 100); // 200 -> 100
+          }
+          return [r, g, b];
+        }
+
+        function buildLandscape() {
+          var res = Math.min(width, 400);
+          var hRes = Math.round(res * height / width);
+          var imgCanvas = document.createElement('canvas');
+          imgCanvas.width = res;
+          imgCanvas.height = hRes;
+          var imgCtx = imgCanvas.getContext('2d');
+          var imgData = imgCtx.createImageData(res, hRes);
+
+          // Find min/max for normalization
+          var vMin = Infinity, vMax = -Infinity;
+          var values = new Float32Array(res * hRes);
+          for (var j = 0; j < hRes; j++) {
+            for (var i = 0; i < res; i++) {
+              var wx = DOMAIN.xMin + i / res * (DOMAIN.xMax - DOMAIN.xMin);
+              var wy = DOMAIN.yMin + j / hRes * (DOMAIN.yMax - DOMAIN.yMin);
+              var v = loss(wx, wy);
+              values[j * res + i] = v;
+              if (v < vMin) vMin = v;
+              if (v > vMax) vMax = v;
+            }
+          }
+
+          // Fill pixel data
+          for (var j = 0; j < hRes; j++) {
+            for (var i = 0; i < res; i++) {
+              var idx = (j * res + i) * 4;
+              var v = values[j * res + i];
+              var c = lossToColor(v, vMin, vMax);
+              imgData.data[idx] = c[0];
+              imgData.data[idx + 1] = c[1];
+              imgData.data[idx + 2] = c[2];
+              imgData.data[idx + 3] = 255;
+            }
+          }
+
+          imgCtx.putImageData(imgData, 0, 0);
+
+          // Draw contour lines
+          var numContours = 12;
+          imgCtx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+          imgCtx.lineWidth = 0.5;
+          for (var ci = 0; ci < numContours; ci++) {
+            var threshold = vMin + (ci + 1) / (numContours + 1) * (vMax - vMin);
+            for (var j = 0; j < hRes - 1; j++) {
+              for (var i = 0; i < res - 1; i++) {
+                var v00 = values[j * res + i];
+                var v10 = values[j * res + i + 1];
+                var v01 = values[(j + 1) * res + i];
+                // Simple contour: if threshold crosses between neighbors, draw a dot
+                if ((v00 < threshold) !== (v10 < threshold) || (v00 < threshold) !== (v01 < threshold)) {
+                  imgCtx.fillStyle = 'rgba(255, 255, 255, 0.06)';
+                  imgCtx.fillRect(i, j, 1, 1);
+                }
+              }
+            }
+          }
+
+          landscapeImg = imgCanvas;
+        }
+
+        function resize() {
+          dpr = window.devicePixelRatio || 1;
+          var rect = canvas.parentElement.getBoundingClientRect();
+          width = rect.width;
+          height = Math.max(340, Math.min(480, width * 0.5));
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          canvas.style.height = height + 'px';
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          buildLandscape();
+        }
+
+        // Drawing
+        function drawLandscape() {
+          if (!landscapeImg) return;
+          ctx.drawImage(landscapeImg, 0, 0, width, height);
+
+          // Subtle grid
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+          ctx.lineWidth = 1;
+          var gridSize = 40;
+          for (var gx = 0; gx < width; gx += gridSize) {
+            ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, height); ctx.stroke();
+          }
+          for (var gy = 0; gy < height; gy += gridSize) {
+            ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(width, gy); ctx.stroke();
+          }
+        }
+
+        function drawTrail() {
+          if (trail.length < 2) return;
+          for (var i = 1; i < trail.length; i++) {
+            var alpha = (i / trail.length) * 0.7;
+            var p0 = worldToCanvas(trail[i - 1].x, trail[i - 1].y);
+            var p1 = worldToCanvas(trail[i].x, trail[i].y);
+            ctx.beginPath();
+            ctx.moveTo(p0.x, p0.y);
+            ctx.lineTo(p1.x, p1.y);
+            ctx.strokeStyle = 'rgba(207, 89, 230, ' + alpha + ')';
+            ctx.lineWidth = 1.5 + alpha;
+            ctx.stroke();
+          }
+        }
+
+        function drawBall(wx, wy) {
+          var p = worldToCanvas(wx, wy);
+          var r = 10;
+
+          // Outer glow
+          var g1 = ctx.createRadialGradient(p.x, p.y, r * 0.5, p.x, p.y, r + 20);
+          g1.addColorStop(0, 'rgba(128, 0, 255, 0.5)');
+          g1.addColorStop(1, 'rgba(128, 0, 255, 0)');
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r + 20, 0, Math.PI * 2);
+          ctx.fillStyle = g1;
+          ctx.fill();
+
+          // Ball body
+          var g2 = ctx.createRadialGradient(p.x - r * 0.3, p.y - r * 0.3, 0, p.x, p.y, r);
+          g2.addColorStop(0, '#c080ff');
+          g2.addColorStop(1, COLORS.purple);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+          ctx.fillStyle = g2;
+          ctx.fill();
+
+          // Inner highlight
+          ctx.beginPath();
+          ctx.arc(p.x - r * 0.2, p.y - r * 0.2, r * 0.3, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+          ctx.fill();
+
+          // Border
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+
+        function drawLabels() {
+          ctx.font = '11px "JetBrains Mono", monospace';
+          ctx.textAlign = 'center';
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+          ctx.fillText('loss landscape', width / 2, height - 12);
+
+          // Global min marker
+          var gMin = worldToCanvas(0.5, -0.8);
+          ctx.beginPath();
+          ctx.arc(gMin.x, gMin.y, 4, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(107, 197, 248, 0.5)';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          ctx.fillStyle = 'rgba(107, 197, 248, 0.15)';
+          ctx.fill();
+        }
+
+        // Simulation
+        function step() {
+          var g = gradient(ballX, ballY);
+          velX = momentum * velX - learningRate * g.dx;
+          velY = momentum * velY - learningRate * g.dy;
+          ballX += velX;
+          ballY += velY;
+
+          // Clamp to domain
+          if (ballX < DOMAIN.xMin) { ballX = DOMAIN.xMin; velX = 0; }
+          if (ballX > DOMAIN.xMax) { ballX = DOMAIN.xMax; velX = 0; }
+          if (ballY < DOMAIN.yMin) { ballY = DOMAIN.yMin; velY = 0; }
+          if (ballY > DOMAIN.yMax) { ballY = DOMAIN.yMax; velY = 0; }
+
+          trail.push({ x: ballX, y: ballY });
+          if (trail.length > MAX_TRAIL) trail.shift();
+        }
+
+        // Main loop
+        var lastTime = performance.now();
+
+        function animate(now) {
+          var dt = now - lastTime;
+          lastTime = now;
+
+          // Fixed timestep simulation (~60fps worth of steps)
+          var steps = Math.min(Math.round(dt / 16), 4);
+          for (var s = 0; s < Math.max(1, steps); s++) {
+            step();
+          }
+
+          ctx.clearRect(0, 0, width, height);
+          drawLandscape();
+          drawLabels();
+          drawTrail();
+          drawBall(ballX, ballY);
+
+          // Update loss display
+          var lossVal = loss(ballX, ballY);
+          document.getElementById('gd-loss-display').textContent = 'loss: ' + lossVal.toFixed(3);
+
+          requestAnimationFrame(animate);
+        }
+
+        // Events
+        canvas.addEventListener('click', function(e) {
+          var rect = canvas.getBoundingClientRect();
+          var cx = e.clientX - rect.left;
+          var cy = e.clientY - rect.top;
+          var w = canvasToWorld(cx, cy);
+          ballX = w.x;
+          ballY = w.y;
+          velX = 0;
+          velY = 0;
+          trail = [{ x: ballX, y: ballY }];
+        });
+
+        canvas.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          var rect = canvas.getBoundingClientRect();
+          var touch = e.touches[0];
+          var cx = touch.clientX - rect.left;
+          var cy = touch.clientY - rect.top;
+          var w = canvasToWorld(cx, cy);
+          ballX = w.x;
+          ballY = w.y;
+          velX = 0;
+          velY = 0;
+          trail = [{ x: ballX, y: ballY }];
+        }, { passive: false });
+
+        // Slider: learning rate (logarithmic scale)
+        var lrSlider = document.getElementById('gd-lr');
+        var lrLabel = document.getElementById('gd-lr-val');
+        lrSlider.addEventListener('input', function() {
+          learningRate = 0.001 * Math.pow(500, this.value / 100);
+          lrLabel.textContent = learningRate.toFixed(3);
+        });
+
+        // Slider: momentum
+        var momSlider = document.getElementById('gd-momentum');
+        var momLabel = document.getElementById('gd-mom-val');
+        momSlider.addEventListener('input', function() {
+          momentum = this.value / 100;
+          momLabel.textContent = momentum.toFixed(2);
+        });
+
+        // Reset button
+        document.getElementById('gd-reset').addEventListener('click', function() {
+          ballX = -3 + Math.random() * 2;
+          ballY = 2 + Math.random() * 2;
+          velX = 0;
+          velY = 0;
+          trail = [{ x: ballX, y: ballY }];
+        });
+
+        // Init
         window.addEventListener('resize', resize);
         resize();
         requestAnimationFrame(animate);
