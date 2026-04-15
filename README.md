@@ -1,15 +1,19 @@
-# 🌐 Personal Portfolio -- Param Chordiya
+# Param Chordiya — Personal Portfolio
 
-Welcome to my personal portfolio website! This site serves as a central hub to showcase my projects, skills, experience, and contact information. Whether you're a recruiter, collaborator, or just curious, feel free to explore and get in touch.
+Machine Learning Engineer at 7-Eleven Inc. | UC San Diego Alumnus
 
-I recently graduated from University of California San Diego with a Masters in Electrical & Computer Engineering with focus on Machine Learning & Data Science
+## Live
 
-## 🚀 Live Demo
+[paramchordiya.github.io](https://paramchordiya.github.io)
 
-🌍 Visit the live website here: [paramchordiya.github.io](https://paramchordiya.github.io)
+## Stack
 
-## 📬 Contact
+- HTML, CSS, JavaScript
+- AOS (Animate on Scroll)
+- Google Analytics
 
-- Linkedin - https://www.linkedin.com/in/paramchordiya
-- Instagram - https://www.instagram.com/justbeingparam
+## Contact
 
+- [LinkedIn](https://www.linkedin.com/in/paramchordiya)
+- [GitHub](https://github.com/paramchordiya)
+- [Email](mailto:param1111.chordiya@gmail.com)
