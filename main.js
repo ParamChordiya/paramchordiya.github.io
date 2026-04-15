@@ -47,7 +47,7 @@ function hamburgerMenu() {
 }
 
 function hidemenubyli() {
-  document.body.classList.toggle("stopscrolling"),
+  document.body.classList.remove("stopscrolling"),
     document
       .getElementById("mobiletogglemenu")
       .classList.remove("show-toggle-menu"),
@@ -73,7 +73,7 @@ window.addEventListener("scroll", () => {
   sections.forEach((section) => {
     let sectionTop = section.offsetTop;
     // You can adjust "200" to tweak when the active state updates
-    if (pageYOffset >= sectionTop - 200) {
+    if (window.scrollY >= sectionTop - 200) {
       current = section.getAttribute("id");
     }
   });

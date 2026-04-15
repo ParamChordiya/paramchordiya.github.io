@@ -67,11 +67,14 @@
      box-sizing: border-box;
      margin: 0;
      padding: 0;
+     -webkit-tap-highlight-color: transparent;
+   }
+
+   .jello, .navbar-tabs-ul, .mobile-navbar-tabs-ul, .logo, .tech-stack-box, .letsTalkBtn, .resume-btn {
      -webkit-user-select: none;
      -moz-user-select: none;
      -ms-user-select: none;
      user-select: none;
-     -webkit-tap-highlight-color: transparent;
    }
    
    ::selection {
@@ -208,12 +211,12 @@
      --tech-stack-box-first-color: #e7e2db;
      --tech-stack-box-second-color: #ece7e100;
      --tech-stack-box-border-color: #dad5cf;
-     & .footer-background {
-       background-color: var(--color-light-mode);
-     }
-     & .footer-bottom {
-       background-color: #e2ddd7;
-     }
+   }
+   .light-mode .footer-background {
+     background-color: var(--color-light-mode);
+   }
+   .light-mode .footer-bottom {
+     background-color: #e2ddd7;
    }
    
    /* ===========================================
@@ -696,6 +699,14 @@
    }
    
    /* Gradient animation */
+   #name h1 {
+     margin: 0;
+     padding: 0;
+     font-size: inherit;
+     font-weight: inherit;
+     display: flex;
+   }
+
    #name {
      align-items: flex-start;
      background: linear-gradient(
