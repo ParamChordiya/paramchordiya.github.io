@@ -206,6 +206,127 @@
         opacity: 0.7;
       }
 
+      /* Token Predictor */
+      .tp-input-wrapper {
+        margin-bottom: 16px;
+      }
+
+      .tp-input {
+        width: 100%;
+        padding: 14px 20px;
+        font-family: "Inter", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--color-white);
+        background: var(--tech-stack-box-first-color);
+        border: 1px solid var(--tech-stack-box-border-color);
+        border-radius: 12px;
+        outline: none;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+      }
+
+      .tp-input:focus {
+        border-color: var(--color-purple);
+      }
+
+      .tp-input::placeholder {
+        color: var(--color-white);
+        opacity: 0.3;
+      }
+
+      .tp-head-legend {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 12px;
+        flex-wrap: wrap;
+      }
+
+      .tp-head-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.1rem;
+        color: var(--color-white);
+        opacity: 0.5;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        user-select: none;
+      }
+
+      .tp-head-item:hover,
+      .tp-head-item.active {
+        opacity: 1;
+      }
+
+      .tp-head-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .tp-predictions {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .tp-pred-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .tp-pred-word {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.2rem;
+        color: var(--color-white);
+        width: 80px;
+        text-align: right;
+        opacity: 0.8;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .tp-pred-bar-bg {
+        flex: 1;
+        height: 20px;
+        background: rgba(128, 0, 255, 0.08);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .tp-pred-bar-fill {
+        height: 100%;
+        border-radius: 4px;
+        background: linear-gradient(90deg, var(--color-purple), var(--color-light-blue));
+        transition: width 0.4s ease;
+        min-width: 0;
+      }
+
+      .tp-pred-prob {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.1rem;
+        color: var(--color-white);
+        opacity: 0.4;
+        width: 52px;
+        text-align: right;
+      }
+
+      .tp-empty-state {
+        text-align: center;
+        padding: 20px 0;
+        font-family: "Inter", sans-serif;
+        font-size: 1.3rem;
+        color: var(--color-white);
+        opacity: 0.3;
+      }
+
       /* Experiments Cards */
       .pg-experiments {
         margin-bottom: 80px;
@@ -489,16 +610,26 @@
           <p class="gd-loss-display" id="gd-loss-display">loss: 0.000</p>
         </section>
 
-        <!-- Coming Soon Cards -->
-        <section class="pg-experiments">
-          <h2 class="pg-experiments-title">More experiments coming soon...</h2>
-          <div class="pg-cards-grid">
-            <div class="pg-card">
-              <h3>Token Predictor</h3>
-              <p>A tiny transformer that tries to guess your next word. Type a sentence and watch attention heads light up as it predicts.</p>
-              <span class="pg-card-badge">coming soon</span>
-            </div>
+        <!-- Token Predictor -->
+        <section class="nn-section">
+          <h2 class="nn-title">Token Predictor</h2>
+          <div class="tp-input-wrapper">
+            <input type="text" id="tp-input" class="tp-input" placeholder="Type a sentence and watch the transformer think..." maxlength="120" autocomplete="off" spellcheck="false" />
           </div>
+          <div class="nn-canvas-wrapper">
+            <canvas id="tp-canvas"></canvas>
+          </div>
+          <div class="tp-head-legend" id="tp-head-legend">
+            <span class="tp-head-item active" data-head="all"><span class="tp-head-dot" style="background: linear-gradient(135deg, #8000ff, #6bc5f8)"></span>all heads</span>
+            <span class="tp-head-item" data-head="0"><span class="tp-head-dot" style="background: #8000ff"></span>head 0</span>
+            <span class="tp-head-item" data-head="1"><span class="tp-head-dot" style="background: #6bc5f8"></span>head 1</span>
+            <span class="tp-head-item" data-head="2"><span class="tp-head-dot" style="background: #cf59e6"></span>head 2</span>
+            <span class="tp-head-item" data-head="3"><span class="tp-head-dot" style="background: #4ecdc4"></span>head 3</span>
+          </div>
+          <div class="tp-predictions" id="tp-predictions">
+            <div class="tp-empty-state" id="tp-empty">predictions appear here...</div>
+          </div>
+          <p class="nn-hint">A tiny transformer predicts your next word &mdash; hover tokens to inspect attention, click heads to filter</p>
         </section>
       </div>
     </main>
@@ -1309,6 +1440,559 @@
         });
 
         // Init
+        window.addEventListener('resize', resize);
+        resize();
+        requestAnimationFrame(animate);
+      })();
+
+      // ==========================================
+      // Token Predictor
+      // ==========================================
+      (function() {
+        var canvas = document.getElementById('tp-canvas');
+        if (!canvas) return;
+        var ctx = canvas.getContext('2d');
+        var input = document.getElementById('tp-input');
+        var predsEl = document.getElementById('tp-predictions');
+        var legendEl = document.getElementById('tp-head-legend');
+
+        // ---- Config ----
+        var EMBED = 32, HEADS = 4, HD = 8, FF_DIM = 64, MAX_TOK = 12;
+        var HCOL = ['#8000ff', '#6bc5f8', '#cf59e6', '#4ecdc4'];
+        var BG = '#11111b';
+
+        var VOCAB = [
+          'the','a','an','is','are','was','were','be','been','being',
+          'have','has','had','do','does','did','will','would','could',
+          'should','may','might','can','must','shall',
+          'and','but','or','not','no','so','if','then','than','that',
+          'this','these','those','it','its','they','them','their',
+          'we','our','you','your','he','she','his','her',
+          'to','of','in','for','on','with','at','by','from','up',
+          'about','into','through','after','before','between','under','over',
+          'very','just','also','only','still','already','always','never',
+          'more','most','much','many','some','any','all','both','each',
+          'new','good','great','first','last','long','little','own',
+          'other','old','right','big','high','small','large','next',
+          'same','important','different','possible',
+          'time','way','day','world','life','people','work','data',
+          'model','system','learning','function','network','code'
+        ];
+
+        // ---- Seeded RNG ----
+        function mulberry32(seed) {
+          return function() {
+            seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+            var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+            t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+            return ((t ^ t >>> 14) >>> 0) / 4294967296;
+          };
+        }
+
+        var R = mulberry32(42);
+
+        // ---- Weight initialization ----
+        function initMat(rows, cols) {
+          var s = Math.sqrt(2.0 / (rows + cols));
+          var m = [];
+          for (var i = 0; i < rows; i++) {
+            m[i] = new Array(cols);
+            for (var j = 0; j < cols; j++) m[i][j] = (R() * 2 - 1) * s;
+          }
+          return m;
+        }
+
+        var Wq = initMat(EMBED, EMBED), Wk = initMat(EMBED, EMBED);
+        var Wv = initMat(EMBED, EMBED), Wo = initMat(EMBED, EMBED);
+        var Wf1 = initMat(EMBED, FF_DIM), Wf2 = initMat(FF_DIM, EMBED);
+        var Wout = initMat(EMBED, VOCAB.length);
+
+        // ---- Math utilities ----
+        function vmul(v, m) {
+          var c = m[0].length, r = new Array(c);
+          for (var j = 0; j < c; j++) {
+            var s = 0;
+            for (var i = 0; i < v.length; i++) s += v[i] * m[i][j];
+            r[j] = s;
+          }
+          return r;
+        }
+
+        function softmax(a) {
+          var mx = -Infinity, i;
+          for (i = 0; i < a.length; i++) if (a[i] > mx) mx = a[i];
+          var s = 0, r = new Array(a.length);
+          for (i = 0; i < a.length; i++) { r[i] = Math.exp(a[i] - mx); s += r[i]; }
+          for (i = 0; i < a.length; i++) r[i] /= s;
+          return r;
+        }
+
+        function vadd(a, b) {
+          var r = new Array(a.length);
+          for (var i = 0; i < a.length; i++) r[i] = a[i] + b[i];
+          return r;
+        }
+
+        function relu(a) {
+          var r = new Array(a.length);
+          for (var i = 0; i < a.length; i++) r[i] = a[i] > 0 ? a[i] : 0;
+          return r;
+        }
+
+        // ---- Embeddings ----
+        function hashEmbed(word) {
+          var h = 5381;
+          for (var i = 0; i < word.length; i++) h = ((h << 5) + h + word.charCodeAt(i)) | 0;
+          var wr = mulberry32(h), e = new Array(EMBED);
+          for (var i = 0; i < EMBED; i++) e[i] = (wr() * 2 - 1) * 0.5;
+          return e;
+        }
+
+        function posEnc(pos) {
+          var pe = new Array(EMBED);
+          for (var i = 0; i < EMBED; i++) {
+            var angle = pos / Math.pow(10000, (i - (i % 2)) / EMBED);
+            pe[i] = i % 2 === 0 ? Math.sin(angle) : Math.cos(angle);
+          }
+          return pe;
+        }
+
+        // ---- Transformer forward pass ----
+        function forward(tokens) {
+          var n = tokens.length;
+
+          // Embed + positional encoding
+          var emb = [];
+          for (var i = 0; i < n; i++) emb[i] = vadd(hashEmbed(tokens[i]), posEnc(i));
+
+          // Q, K, V projections
+          var Q = [], K = [], V = [];
+          for (var i = 0; i < n; i++) {
+            Q[i] = vmul(emb[i], Wq);
+            K[i] = vmul(emb[i], Wk);
+            V[i] = vmul(emb[i], Wv);
+          }
+
+          // Multi-head causal self-attention
+          var attnW = [];
+          for (var h = 0; h < HEADS; h++) {
+            attnW[h] = [];
+            var hs = h * HD;
+            for (var i = 0; i < n; i++) {
+              var scores = [];
+              for (var j = 0; j <= i; j++) {
+                var sc = 0;
+                for (var d = 0; d < HD; d++) sc += Q[i][hs + d] * K[j][hs + d];
+                scores.push(sc / Math.sqrt(HD));
+              }
+              attnW[h][i] = softmax(scores);
+            }
+          }
+
+          // Attention output
+          var attnOut = [];
+          for (var i = 0; i < n; i++) {
+            var concat = new Array(EMBED);
+            for (var h = 0; h < HEADS; h++) {
+              var hs = h * HD;
+              for (var d = 0; d < HD; d++) {
+                var val = 0;
+                for (var j = 0; j <= i; j++) val += attnW[h][i][j] * V[j][hs + d];
+                concat[hs + d] = val;
+              }
+            }
+            attnOut[i] = vmul(concat, Wo);
+          }
+
+          // Residual + feed-forward
+          var out = [];
+          for (var i = 0; i < n; i++) {
+            var res = vadd(emb[i], attnOut[i]);
+            var ff = vmul(relu(vmul(res, Wf1)), Wf2);
+            out[i] = vadd(res, ff);
+          }
+
+          // Project last token to vocab
+          var logits = vmul(out[n - 1], Wout);
+          for (var i = 0; i < logits.length; i++) logits[i] /= 0.8; // temperature
+          var probs = softmax(logits);
+
+          // Top 5
+          var indexed = [];
+          for (var i = 0; i < probs.length; i++) indexed.push({ word: VOCAB[i], prob: probs[i] });
+          indexed.sort(function(a, b) { return b.prob - a.prob; });
+
+          return { attn: attnW, preds: indexed.slice(0, 5) };
+        }
+
+        // ---- State ----
+        var width, height, dpr;
+        var toks = [], attn = null, preds = [];
+        var selHead = 'all', hoverTok = -1, focusTok = -1;
+        var animT = 1, time = 0;
+
+        function resize() {
+          dpr = window.devicePixelRatio || 1;
+          var rect = canvas.parentElement.getBoundingClientRect();
+          width = rect.width;
+          height = Math.max(280, Math.min(420, width * 0.45));
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          canvas.style.height = height + 'px';
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        // ---- Drawing helpers ----
+        function hexA(hex, a) {
+          return hex + Math.round(Math.max(0, Math.min(1, a)) * 255).toString(16).padStart(2, '0');
+        }
+
+        function rrect(x, y, w, h, r) {
+          ctx.beginPath();
+          ctx.moveTo(x + r, y);
+          ctx.lineTo(x + w - r, y);
+          ctx.arcTo(x + w, y, x + w, y + r, r);
+          ctx.lineTo(x + w, y + h - r);
+          ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+          ctx.lineTo(x + r, y + h);
+          ctx.arcTo(x, y + h, x, y + h - r, r);
+          ctx.lineTo(x, y + r);
+          ctx.arcTo(x, y, x + r, y, r);
+          ctx.closePath();
+        }
+
+        // Token chip layout
+        function layout(tokens) {
+          if (!tokens.length) return [];
+          var chipH = 28, gap = 8, padX = 14;
+          var baseY = height - 22;
+          ctx.font = '12px "JetBrains Mono", monospace';
+
+          var chips = [], totalW = 0;
+          for (var i = 0; i < tokens.length; i++) {
+            var tw = Math.min(88, Math.max(38, ctx.measureText(tokens[i]).width + padX * 2));
+            chips.push({ w: tw, h: chipH, text: tokens[i] });
+            totalW += tw;
+          }
+          totalW += gap * (tokens.length - 1);
+
+          // If too wide, shrink chips
+          if (totalW > width - 40) {
+            var scale = (width - 40) / totalW;
+            for (var i = 0; i < chips.length; i++) chips[i].w = Math.max(32, chips[i].w * scale);
+            totalW = 0;
+            for (var i = 0; i < chips.length; i++) totalW += chips[i].w;
+            totalW += gap * (tokens.length - 1);
+          }
+
+          var x = (width - totalW) / 2;
+          for (var i = 0; i < chips.length; i++) {
+            chips[i].x = x;
+            chips[i].y = baseY - chipH;
+            chips[i].cx = x + chips[i].w / 2;
+            chips[i].topY = baseY - chipH;
+            x += chips[i].w + gap;
+          }
+          return chips;
+        }
+
+        // Draw token chips
+        function drawChips(chips) {
+          ctx.font = '12px "JetBrains Mono", monospace';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          for (var i = 0; i < chips.length; i++) {
+            var c = chips[i];
+            var isH = hoverTok === i;
+            var isLast = i === chips.length - 1;
+            var isFocus = focusTok === i;
+
+            rrect(c.x, c.y, c.w, c.h, 8);
+            if (isFocus || (focusTok === -1 && isLast)) {
+              ctx.fillStyle = 'rgba(128, 0, 255, 0.2)';
+              ctx.strokeStyle = 'rgba(128, 0, 255, 0.5)';
+            } else if (isH) {
+              ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+              ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            } else {
+              ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+              ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            }
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // Token index label
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.font = '9px "JetBrains Mono", monospace';
+            ctx.fillText(i, c.cx, c.y - 6);
+
+            // Token text
+            ctx.font = '12px "JetBrains Mono", monospace';
+            var isActive = isFocus || (focusTok === -1 && isLast);
+            ctx.fillStyle = isActive ? 'rgba(200, 160, 255, 0.9)' : 'rgba(255, 255, 255, 0.7)';
+            var disp = c.text.length > 8 ? c.text.slice(0, 7) + '\u2026' : c.text;
+            ctx.fillText(disp, c.cx, c.y + c.h / 2);
+          }
+
+          // Next-token arrow after last chip
+          if (chips.length > 0) {
+            var last = chips[chips.length - 1];
+            var ax = last.x + last.w + 12;
+            var ay = last.y + last.h / 2;
+
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(ax + 24, ay);
+            ctx.strokeStyle = 'rgba(128, 0, 255, 0.3)';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Arrow head
+            ctx.beginPath();
+            ctx.moveTo(ax + 24, ay);
+            ctx.lineTo(ax + 19, ay - 4);
+            ctx.lineTo(ax + 19, ay + 4);
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(128, 0, 255, 0.3)';
+            ctx.fill();
+
+            // "?" label
+            ctx.font = '11px "JetBrains Mono", monospace';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = 'rgba(128, 0, 255, 0.4)';
+            ctx.fillText('?', ax + 32, ay + 1);
+          }
+        }
+
+        // Draw attention arcs
+        function drawArcs(chips, attnData, t) {
+          if (!attnData || chips.length < 2) return;
+
+          var qi = focusTok >= 0 ? focusTok : chips.length - 1;
+          var arcTop = 36;
+          var arcBot = chips[0].topY - 16;
+          var maxH = arcBot - arcTop;
+
+          var heads = selHead === 'all' ? [0, 1, 2, 3] : [parseInt(selHead)];
+
+          for (var hi = 0; hi < heads.length; hi++) {
+            var h = heads[hi];
+            var col = HCOL[h];
+            if (!attnData[h] || !attnData[h][qi]) continue;
+            var weights = attnData[h][qi];
+
+            for (var j = 0; j < weights.length; j++) {
+              if (j === qi) continue;
+              var w = weights[j] * t;
+              if (w < 0.015) continue;
+
+              var fromC = chips[j];
+              var toC = chips[qi];
+              var dist = Math.abs(qi - j);
+              var maxDist = Math.max(1, chips.length - 1);
+              var arcH = 28 + (dist / maxDist) * maxH * 0.8;
+
+              var x1 = fromC.cx, x2 = toC.cx;
+              var y = fromC.topY - 8;
+              var cpx = (x1 + x2) / 2, cpy = y - arcH;
+
+              // Glow layer
+              ctx.beginPath();
+              ctx.moveTo(x1, y);
+              ctx.quadraticCurveTo(cpx, cpy, x2, y);
+              ctx.strokeStyle = hexA(col, w * 0.25);
+              ctx.lineWidth = 3 + w * 8;
+              ctx.shadowColor = col;
+              ctx.shadowBlur = w * 18;
+              ctx.stroke();
+              ctx.shadowBlur = 0;
+
+              // Main arc
+              ctx.beginPath();
+              ctx.moveTo(x1, y);
+              ctx.quadraticCurveTo(cpx, cpy, x2, y);
+              ctx.strokeStyle = hexA(col, w * 0.7);
+              ctx.lineWidth = 1 + w * 3;
+              ctx.stroke();
+
+              // Source dot
+              ctx.beginPath();
+              ctx.arc(x1, y, 2 + w * 2.5, 0, Math.PI * 2);
+              ctx.fillStyle = hexA(col, w * 0.8);
+              ctx.fill();
+
+              // Target dot
+              ctx.beginPath();
+              ctx.arc(x2, y, 2 + w * 2.5, 0, Math.PI * 2);
+              ctx.fillStyle = hexA(col, w * 0.6);
+              ctx.fill();
+            }
+          }
+        }
+
+        // Draw grid background
+        function drawGrid() {
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+          ctx.lineWidth = 1;
+          var gs = 40;
+          for (var gx = 0; gx < width; gx += gs) {
+            ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, height); ctx.stroke();
+          }
+          for (var gy = 0; gy < height; gy += gs) {
+            ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(width, gy); ctx.stroke();
+          }
+        }
+
+        // Main draw
+        function draw() {
+          ctx.clearRect(0, 0, width, height);
+          ctx.fillStyle = BG;
+          ctx.fillRect(0, 0, width, height);
+          drawGrid();
+
+          if (toks.length === 0) {
+            // Empty state with blinking dots
+            ctx.font = '13px "Inter", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            var dots = '';
+            var dc = Math.floor((time / 500) % 4);
+            for (var i = 0; i < dc; i++) dots += '.';
+            ctx.fillText('start typing to see the transformer think' + dots, width / 2, height / 2);
+            return;
+          }
+
+          var chips = layout(toks);
+          var ef = Math.min(1, animT);
+          drawArcs(chips, attn, ef);
+          drawChips(chips);
+
+          // Label
+          ctx.font = '11px "JetBrains Mono", monospace';
+          ctx.textAlign = 'center';
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+          var qi = focusTok >= 0 ? focusTok : toks.length - 1;
+          ctx.fillText('attention from token ' + qi + ' \u2192 "' + toks[qi] + '"', width / 2, 18);
+        }
+
+        // ---- Predictions DOM ----
+        function updatePreds(p) {
+          if (!p || p.length === 0) {
+            predsEl.innerHTML = '<div class="tp-empty-state">predictions appear here...</div>';
+            return;
+          }
+          var maxP = p[0].prob;
+          var html = '';
+          for (var i = 0; i < p.length; i++) {
+            var bw = (p[i].prob / maxP * 100).toFixed(1);
+            var pv = (p[i].prob * 100).toFixed(1);
+            html += '<div class="tp-pred-row">'
+              + '<span class="tp-pred-word">' + escHtml(p[i].word) + '</span>'
+              + '<div class="tp-pred-bar-bg"><div class="tp-pred-bar-fill" style="width:' + bw + '%"></div></div>'
+              + '<span class="tp-pred-prob">' + pv + '%</span></div>';
+          }
+          predsEl.innerHTML = html;
+        }
+
+        function escHtml(s) {
+          return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
+
+        // ---- Input handling ----
+        var debTimer = null;
+        input.addEventListener('input', function() {
+          clearTimeout(debTimer);
+          debTimer = setTimeout(processInput, 100);
+        });
+
+        function processInput() {
+          var text = input.value.trim();
+          if (!text) {
+            toks = []; attn = null; preds = [];
+            updatePreds([]);
+            return;
+          }
+          var newToks = text.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 0; });
+          if (newToks.length > MAX_TOK) newToks = newToks.slice(-MAX_TOK);
+          toks = newToks;
+
+          if (toks.length > 0) {
+            var result = forward(toks);
+            attn = result.attn;
+            preds = result.preds;
+            animT = 0;
+            updatePreds(preds);
+          }
+        }
+
+        // ---- Head legend ----
+        legendEl.addEventListener('click', function(e) {
+          var item = e.target.closest('.tp-head-item');
+          if (!item) return;
+          var items = legendEl.querySelectorAll('.tp-head-item');
+          for (var i = 0; i < items.length; i++) items[i].classList.remove('active');
+          item.classList.add('active');
+          selHead = item.getAttribute('data-head');
+        });
+
+        // ---- Canvas interaction ----
+        canvas.addEventListener('mousemove', function(e) {
+          if (!toks.length) return;
+          var rect = canvas.getBoundingClientRect();
+          var mx = e.clientX - rect.left, my = e.clientY - rect.top;
+          var chips = layout(toks);
+
+          hoverTok = -1;
+          for (var i = 0; i < chips.length; i++) {
+            if (mx >= chips[i].x && mx <= chips[i].x + chips[i].w &&
+                my >= chips[i].y && my <= chips[i].y + chips[i].h) {
+              hoverTok = i;
+              break;
+            }
+          }
+          focusTok = hoverTok;
+          canvas.style.cursor = hoverTok >= 0 ? 'pointer' : 'default';
+        });
+
+        canvas.addEventListener('mouseleave', function() {
+          hoverTok = -1;
+          focusTok = -1;
+          canvas.style.cursor = 'default';
+        });
+
+        canvas.addEventListener('touchstart', function(e) {
+          if (!toks.length) return;
+          var rect = canvas.getBoundingClientRect();
+          var touch = e.touches[0];
+          var mx = touch.clientX - rect.left, my = touch.clientY - rect.top;
+          var chips = layout(toks);
+
+          focusTok = -1;
+          for (var i = 0; i < chips.length; i++) {
+            if (mx >= chips[i].x && mx <= chips[i].x + chips[i].w &&
+                my >= chips[i].y && my <= chips[i].y + chips[i].h) {
+              focusTok = i;
+              break;
+            }
+          }
+        }, { passive: true });
+
+        // ---- Animation loop ----
+        var lastT = performance.now();
+        function animate(now) {
+          time = now;
+          var dt = now - lastT;
+          lastT = now;
+          if (animT < 1) animT = Math.min(1, animT + dt * 0.003);
+          draw();
+          requestAnimationFrame(animate);
+        }
+
         window.addEventListener('resize', resize);
         resize();
         requestAnimationFrame(animate);
