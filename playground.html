@@ -28,6 +28,8 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="liquid-glass.css" />
+    <script src="liquid-glass.js" defer></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,8 +59,8 @@
         margin-bottom: 16px;
         display: block;
         width: 100%;
-        background: -webkit-linear-gradient(
-          135deg,
+        background: linear-gradient(
+          -45deg,
           var(--color-light-blue),
           var(--color-light-purple),
           var(--color-light-blue),
@@ -67,6 +69,8 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-size: 400% 400%;
+        animation: gradient 3s infinite;
       }
 
       .subpage-subtitle {
@@ -103,18 +107,23 @@
         height: 28px;
         background: linear-gradient(180deg, var(--color-purple), var(--color-light-blue));
         border-radius: 2px;
+        box-shadow: 0 0 12px var(--lg-accent-soft);
       }
 
+      /* Glass panel around each canvas — .lg-material.lg-panel in markup.
+         Concentric corners: canvas radius = panel radius minus padding. */
       .nn-canvas-wrapper {
-        border-radius: 16px;
+        padding: 10px;
         overflow: hidden;
-        border: 1px solid var(--tech-stack-box-border-color);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      .nn-canvas-wrapper canvas {
+        display: block;
+        width: 100%;
+        border-radius: calc(var(--lg-radius-xl) - 10px);
       }
 
       #nn-canvas {
-        display: block;
-        width: 100%;
         cursor: crosshair;
       }
 
@@ -154,9 +163,11 @@
       .gd-slider {
         -webkit-appearance: none;
         width: 140px;
-        height: 4px;
-        border-radius: 2px;
-        background: rgba(128, 0, 255, 0.15);
+        height: 6px;
+        border-radius: var(--lg-radius-pill);
+        background: var(--lg-bg);
+        border: 1px solid var(--lg-border);
+        box-shadow: inset 0 1px 0 var(--lg-edge-top);
         outline: none;
       }
 
@@ -182,19 +193,33 @@
 
       .gd-reset-btn {
         font-family: "JetBrains Mono", monospace;
-        font-size: 1.1rem;
-        padding: 5px 14px;
-        border-radius: 6px;
-        background: rgba(128, 0, 255, 0.1);
-        color: var(--color-purple);
-        border: 1px solid rgba(128, 0, 255, 0.15);
+        font-size: 1.2rem;
+        line-height: 1;
+        padding: 8px 18px;
+        border-radius: var(--lg-radius-pill);
+        background: var(--lg-bg);
+        -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+        backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+        color: var(--color-white);
+        border: 1px solid var(--lg-border);
+        box-shadow: inset 0 1px 0 var(--lg-edge-top);
         cursor: pointer;
-        transition: background 0.2s, border-color 0.2s;
+        -webkit-user-select: none;
+        user-select: none;
+        transition: all var(--lg-dur) var(--lg-spring);
       }
 
       .gd-reset-btn:hover {
-        background: rgba(128, 0, 255, 0.2);
-        border-color: var(--color-purple);
+        background: var(--lg-bg-strong);
+        border-color: var(--lg-border-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--lg-glow), inset 0 1px 0 var(--lg-edge-top);
+      }
+
+      .gd-reset-btn:active {
+        background: var(--lg-bg-press);
+        transform: translateY(0) scale(0.97);
+        transition-duration: var(--lg-dur-fast);
       }
 
       .gd-loss-display {
@@ -218,16 +243,21 @@
         font-size: 1.5rem;
         font-weight: 400;
         color: var(--color-white);
-        background: var(--tech-stack-box-first-color);
-        border: 1px solid var(--tech-stack-box-border-color);
-        border-radius: 12px;
+        background: var(--lg-bg);
+        -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+        backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+        border: 1px solid var(--lg-border);
+        border-radius: var(--lg-radius-md);
+        box-shadow: inset 0 1px 0 var(--lg-edge-top);
         outline: none;
-        transition: border-color 0.3s;
+        transition: border-color var(--lg-dur) var(--lg-ease), box-shadow var(--lg-dur) var(--lg-ease), background var(--lg-dur) var(--lg-ease);
         box-sizing: border-box;
       }
 
       .tp-input:focus {
-        border-color: var(--color-purple);
+        border-color: var(--lg-accent-2);
+        background: var(--lg-bg-strong);
+        box-shadow: 0 0 0 3px rgba(107, 197, 248, 0.14), 0 0 28px rgba(107, 197, 248, 0.12), inset 0 1px 0 var(--lg-edge-top);
       }
 
       .tp-input::placeholder {
@@ -250,15 +280,30 @@
         font-family: "JetBrains Mono", monospace;
         font-size: 1.1rem;
         color: var(--color-white);
-        opacity: 0.5;
+        opacity: 0.6;
+        padding: 6px 14px;
+        border-radius: var(--lg-radius-pill);
+        background: var(--lg-bg);
+        -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+        backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+        border: 1px solid var(--lg-border);
+        box-shadow: inset 0 1px 0 var(--lg-edge-top);
         cursor: pointer;
-        transition: opacity 0.2s;
+        transition: all var(--lg-dur) var(--lg-spring);
+        -webkit-user-select: none;
         user-select: none;
       }
 
-      .tp-head-item:hover,
+      .tp-head-item:hover {
+        opacity: 1;
+        transform: translateY(-2px);
+        border-color: var(--lg-border-hover);
+      }
+
       .tp-head-item.active {
         opacity: 1;
+        background: var(--lg-bg-strong);
+        border-color: var(--lg-border-hover);
       }
 
       .tp-head-dot {
@@ -296,14 +341,16 @@
       .tp-pred-bar-bg {
         flex: 1;
         height: 20px;
-        background: rgba(128, 0, 255, 0.08);
-        border-radius: 4px;
+        background: var(--lg-bg);
+        border: 1px solid var(--lg-border);
+        box-shadow: inset 0 1px 0 var(--lg-edge-top);
+        border-radius: var(--lg-radius-pill);
         overflow: hidden;
       }
 
       .tp-pred-bar-fill {
         height: 100%;
-        border-radius: 4px;
+        border-radius: var(--lg-radius-pill);
         background: linear-gradient(90deg, var(--color-purple), var(--color-light-blue));
         transition: width 0.4s ease;
         min-width: 0;
@@ -325,96 +372,6 @@
         font-size: 1.3rem;
         color: var(--color-white);
         opacity: 0.3;
-      }
-
-      /* Experiments Cards */
-      .pg-experiments {
-        margin-bottom: 80px;
-      }
-
-      .pg-experiments-title {
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 1.8rem;
-        font-weight: 600;
-        margin-bottom: 24px;
-        color: var(--color-white);
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .pg-experiments-title::before {
-        content: "";
-        display: inline-block;
-        width: 4px;
-        height: 28px;
-        background: linear-gradient(180deg, var(--color-light-purple), var(--color-light-blue));
-        border-radius: 2px;
-      }
-
-      .pg-cards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-      }
-
-      .pg-card {
-        background: var(--tech-stack-box-first-color);
-        border: 1px solid var(--tech-stack-box-border-color);
-        border-radius: 14px;
-        padding: 28px 24px;
-        position: relative;
-        overflow: hidden;
-        transition: border-color 0.3s, transform 0.3s;
-      }
-
-      .pg-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--color-purple), var(--color-light-blue), var(--color-light-purple));
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      .pg-card:hover {
-        border-color: var(--color-purple);
-        transform: translateY(-2px);
-      }
-
-      .pg-card:hover::before {
-        opacity: 1;
-      }
-
-      .pg-card h3 {
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 1.8rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--color-white);
-      }
-
-      .pg-card p {
-        font-size: 1.4rem;
-        line-height: 1.6;
-        color: var(--color-white);
-        opacity: 0.5;
-        font-family: "Inter", sans-serif;
-      }
-
-      .pg-card-badge {
-        display: inline-block;
-        margin-top: 14px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 1.1rem;
-        padding: 4px 10px;
-        border-radius: 6px;
-        background: rgba(128, 0, 255, 0.1);
-        color: var(--color-purple);
-        border: 1px solid rgba(128, 0, 255, 0.15);
       }
 
       /* Subpage footer */
@@ -454,15 +411,11 @@
         justify-content: center;
         text-decoration: none;
         border-radius: 50%;
-        border: 2px solid var(--tech-stack-box-border-color);
-        transition: all 0.3s ease;
         position: relative;
       }
 
-      .subpage-footer-links a:hover {
-        box-shadow: 0 0 50px 100px var(--color-purple) inset;
-        border: none;
-      }
+      .subpage-footer-links a { border: 1px solid var(--lg-border); background: var(--lg-bg); -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate)); backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate)); box-shadow: inset 0 1px 0 var(--lg-edge-top); transition: all var(--lg-dur) var(--lg-spring); }
+      .subpage-footer-links a:hover { background: var(--lg-bg-strong); border-color: var(--lg-border-hover); transform: translateY(-3px); box-shadow: var(--lg-shadow), var(--lg-glow), inset 0 1px 0 var(--lg-edge-top); }
 
       .subpage-footer-links svg {
         width: 22px;
@@ -470,15 +423,16 @@
         fill: var(--color-white);
       }
 
-      .subpage-footer-links a:hover svg {
-        fill: #fff;
-      }
-
       .subpage-footer-copy {
         font-family: "JetBrains Mono", monospace;
         font-size: 1.3rem;
         color: var(--color-white);
         opacity: 0.5;
+      }
+
+      /* Keep the back-to-top rail clear of the theme FAB (fixed bottom-right) */
+      #backtotopbutton {
+        bottom: 96px;
       }
 
       /* Responsive */
@@ -494,8 +448,12 @@
   </head>
 
   <body class="body light-mode">
+    <script>try{if(localStorage.getItem("pc-theme")==="dark")document.body.classList.remove("light-mode");}catch(e){}</script>
+    <div class="lg-ambient" aria-hidden="true"></div>
 
     <header>
+      <div class="cursor-inner" id="cursor-inner"></div>
+      <div class="cursor-outer" id="cursor-outer"></div>
       <div class="navbar" id="navbar">
         <div class="logo" tabindex="0" aria-label="param chordiya logo">
           <div class="logo-top">
@@ -523,9 +481,12 @@
               <a href="index.html#gallery" aria-label="gallery menu button">visualize()</a>
             </li>
             <li data-aos="fade-down" data-aos-delay="700">
+              <a href="travel.html" aria-label="travel page">travel()</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="800">
               <a href="blog.html" aria-label="blog page">log()</a>
             </li>
-            <li class="activeThistab" data-aos="fade-down" data-aos-delay="800">
+            <li class="activeThistab" data-aos="fade-down" data-aos-delay="900">
               <a href="playground.html" aria-label="playground page">play()</a>
             </li>
           </ul>
@@ -565,6 +526,9 @@
             <a href="index.html#gallery" tabindex="0">visualize()</a>
           </li>
           <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
+            <a href="travel.html" tabindex="0">travel()</a>
+          </li>
+          <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
             <a href="blog.html" tabindex="0">log()</a>
           </li>
           <li class="mobile-navbar-tabs-li activeThismobiletab" onclick="hidemenubyli()">
@@ -581,18 +545,18 @@
         </header>
 
         <!-- Neural Network Visualizer -->
-        <section class="nn-section">
+        <section class="nn-section" data-aos="fade-up">
           <h2 class="nn-title">Neural Network Visualizer</h2>
-          <div class="nn-canvas-wrapper">
+          <div class="nn-canvas-wrapper lg-material lg-panel">
             <canvas id="nn-canvas"></canvas>
           </div>
           <p class="nn-hint">Click anywhere to trigger a forward pass &mdash; hover nodes to inspect connections</p>
         </section>
 
         <!-- Gradient Descent Roller -->
-        <section class="nn-section">
+        <section class="nn-section" data-aos="fade-up" data-aos-delay="100">
           <h2 class="nn-title">Gradient Descent Roller</h2>
-          <div class="nn-canvas-wrapper">
+          <div class="nn-canvas-wrapper lg-material lg-panel">
             <canvas id="gd-canvas"></canvas>
           </div>
           <div class="gd-controls">
@@ -611,12 +575,12 @@
         </section>
 
         <!-- Token Predictor -->
-        <section class="nn-section">
+        <section class="nn-section" data-aos="fade-up" data-aos-delay="200">
           <h2 class="nn-title">Token Predictor</h2>
           <div class="tp-input-wrapper">
             <input type="text" id="tp-input" class="tp-input" placeholder="Type a sentence and watch the transformer think..." maxlength="120" autocomplete="off" spellcheck="false" />
           </div>
-          <div class="nn-canvas-wrapper">
+          <div class="nn-canvas-wrapper lg-material lg-panel">
             <canvas id="tp-canvas"></canvas>
           </div>
           <div class="tp-head-legend" id="tp-head-legend">
@@ -633,6 +597,11 @@
         </section>
       </div>
     </main>
+
+    <!-- Back to top -->
+    <button id="backtotopbutton" onclick="scrolltoTopfunction()">
+      <article aria-label="Back to top">&#8592;BACK TO TOP</article>
+    </button>
 
     <!-- Footer -->
     <footer class="subpage-footer">
@@ -656,6 +625,12 @@
       </div>
     </footer>
 
+    <!-- Theme toggle -->
+    <button class="lg-fab" id="theme-fab" aria-label="Toggle light and dark mode" onclick="toggleTheme()">
+      <svg class="lg-fab-sun" viewBox="0 0 512 512"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
+      <svg class="lg-fab-moon" viewBox="0 0 384 512"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
+    </button>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init();
@@ -677,6 +652,59 @@
         document.getElementById("burger-bar3").classList.remove("hamburger-animation3");
       }
 
+      // Theme toggle (persisted via "pc-theme")
+      function toggleTheme(){var l=document.body.classList.toggle("light-mode");try{localStorage.setItem("pc-theme",l?"light":"dark")}catch(e){}}
+
+      // ==========================================
+      // Shared canvas theming
+      // Widgets read this every frame, so the FAB
+      // toggle is picked up by running rAF loops
+      // with no reload or observer needed.
+      // ==========================================
+      var PG_THEME_DARK = {
+        light: false,
+        bg: '#11111b',
+        ink: '255, 255, 255',
+        grid: 'rgba(255, 255, 255, 0.015)',
+        label: 'rgba(255, 255, 255, 0.2)',
+        accentText: 'rgba(200, 160, 255, 0.9)'
+      };
+      var PG_THEME_LIGHT = {
+        light: true,
+        bg: '#eae5df',
+        ink: '17, 17, 27',
+        grid: 'rgba(17, 17, 27, 0.05)',
+        label: 'rgba(17, 17, 27, 0.45)',
+        accentText: 'rgba(102, 0, 204, 0.9)'
+      };
+      function themeColors() {
+        return document.body.classList.contains('light-mode') ? PG_THEME_LIGHT : PG_THEME_DARK;
+      }
+
+      // Content width of the glass panel around a canvas
+      // (parent rect includes the panel's padding + border,
+      // so subtract them to keep canvases from overflowing).
+      function canvasContentWidth(canvas) {
+        var el = canvas.parentElement;
+        var cs = window.getComputedStyle(el);
+        return el.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+      }
+
+      // Back to top
+      var mybutton = document.getElementById("backtotopbutton");
+      function scrollFunction() {
+        document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
+          ? (mybutton.style.display = "block")
+          : (mybutton.style.display = "none");
+      }
+      function scrolltoTopfunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
       // ==========================================
       // Neural Network Visualizer
       // ==========================================
@@ -686,16 +714,15 @@
 
         var LAYER_SIZES = [4, 6, 6, 2];
         var NODE_RADIUS = 14;
+        // Accents stay identical in both themes; surfaces/ink come from themeColors()
         var COLORS = {
           purple: '#8000ff',
           blue: '#6bc5f8',
           pink: '#cf59e6',
-          bg: '#11111b',
-          connection: 'rgba(255, 255, 255, 0.06)',
           connectionHighlight: 'rgba(128, 0, 255, 0.35)',
-          nodeStroke: 'rgba(255, 255, 255, 0.12)',
         };
 
+        var T = themeColors();
         var width, height, dpr;
         var nodes = [];
         var connections = [];
@@ -709,8 +736,7 @@
 
         function resize() {
           dpr = window.devicePixelRatio || 1;
-          var rect = canvas.parentElement.getBoundingClientRect();
-          width = rect.width;
+          width = canvasContentWidth(canvas);
           height = Math.max(340, Math.min(480, width * 0.5));
           canvas.width = width * dpr;
           canvas.height = height * dpr;
@@ -858,7 +884,7 @@
             ctx.shadowColor = COLORS.purple;
             ctx.shadowBlur = 12;
           } else {
-            ctx.strokeStyle = 'rgba(255, 255, 255, ' + (0.04 + alpha * 0.08) + ')';
+            ctx.strokeStyle = 'rgba(' + T.ink + ', ' + ((T.light ? 0.08 : 0.04) + alpha * 0.08) + ')';
             ctx.lineWidth = 1;
             ctx.shadowBlur = 0;
           }
@@ -909,8 +935,8 @@
           ctx.globalAlpha = 1;
 
           ctx.strokeStyle = isHovered
-            ? 'rgba(255, 255, 255, 0.7)'
-            : 'rgba(255, 255, 255, ' + (0.1 + glow * 0.2) + ')';
+            ? 'rgba(' + T.ink + ', 0.7)'
+            : 'rgba(' + T.ink + ', ' + (0.1 + glow * 0.2) + ')';
           ctx.lineWidth = isHovered ? 2 : 1;
           ctx.stroke();
 
@@ -962,13 +988,14 @@
           var dt = now - lastTime;
           lastTime = now;
           time = now;
+          T = themeColors();
 
           ctx.clearRect(0, 0, width, height);
 
-          ctx.fillStyle = COLORS.bg;
+          ctx.fillStyle = T.bg;
           ctx.fillRect(0, 0, width, height);
 
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+          ctx.strokeStyle = T.grid;
           ctx.lineWidth = 1;
           var gridSize = 40;
           for (var gx = 0; gx < width; gx += gridSize) {
@@ -1086,7 +1113,7 @@
 
           ctx.font = '11px "JetBrains Mono", monospace';
           ctx.textAlign = 'center';
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+          ctx.fillStyle = T.label;
           var labels = ['input', 'hidden_1', 'hidden_2', 'output'];
           var layerXs = [];
           var nodeIdx = 0;
@@ -1116,13 +1143,14 @@
         var COLORS = {
           purple: '#8000ff',
           blue: '#6bc5f8',
-          pink: '#cf59e6',
-          bg: '#11111b'
+          pink: '#cf59e6'
         };
 
         var DOMAIN = { xMin: -4, xMax: 4, yMin: -4, yMax: 4 };
+        var T = themeColors();
         var width, height, dpr;
         var landscapeImg = null;
+        var landscapeIsLight = null;
 
         // State
         var ballX = -2.5, ballY = 2.5;
@@ -1164,7 +1192,7 @@
           };
         }
 
-        // Color mapping: high loss -> purple, low -> blue/cyan glow
+        // Color mapping (dark theme): high loss -> purple, low -> blue/cyan glow
         function lossToColor(v, vMin, vMax) {
           var t = (v - vMin) / (vMax - vMin);
           t = Math.max(0, Math.min(1, t));
@@ -1185,7 +1213,30 @@
           return [r, g, b];
         }
 
+        // Color mapping (light theme): same semantics on warm paper —
+        // soft lavender (high) -> paper (mid) -> soft teal (low)
+        function lossToColorLight(v, vMin, vMax) {
+          var t = (v - vMin) / (vMax - vMin);
+          t = Math.max(0, Math.min(1, t));
+
+          var r, g, b;
+          if (t > 0.5) {
+            var s = (t - 0.5) * 2; // paper -> lavender
+            r = Math.round(228 - s * 46);   // 228 -> 182
+            g = Math.round(222 - s * 74);   // 222 -> 148
+            b = Math.round(214 + s * 31);   // 214 -> 245
+          } else {
+            var s = t * 2; // teal -> paper
+            r = Math.round(126 + s * 102);  // 126 -> 228
+            g = Math.round(199 + s * 23);   // 199 -> 222
+            b = Math.round(193 + s * 21);   // 193 -> 214
+          }
+          return [r, g, b];
+        }
+
         function buildLandscape() {
+          var isLight = themeColors().light;
+          var mapColor = isLight ? lossToColorLight : lossToColor;
           var res = Math.min(width, 400);
           var hRes = Math.round(res * height / width);
           var imgCanvas = document.createElement('canvas');
@@ -1213,7 +1264,7 @@
             for (var i = 0; i < res; i++) {
               var idx = (j * res + i) * 4;
               var v = values[j * res + i];
-              var c = lossToColor(v, vMin, vMax);
+              var c = mapColor(v, vMin, vMax);
               imgData.data[idx] = c[0];
               imgData.data[idx + 1] = c[1];
               imgData.data[idx + 2] = c[2];
@@ -1223,9 +1274,10 @@
 
           imgCtx.putImageData(imgData, 0, 0);
 
-          // Draw contour lines
+          // Draw contour lines ("ink" flips with the theme)
           var numContours = 12;
-          imgCtx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+          var contourColor = isLight ? 'rgba(17, 17, 27, 0.1)' : 'rgba(255, 255, 255, 0.06)';
+          imgCtx.strokeStyle = isLight ? 'rgba(17, 17, 27, 0.12)' : 'rgba(255, 255, 255, 0.08)';
           imgCtx.lineWidth = 0.5;
           for (var ci = 0; ci < numContours; ci++) {
             var threshold = vMin + (ci + 1) / (numContours + 1) * (vMax - vMin);
@@ -1236,7 +1288,7 @@
                 var v01 = values[(j + 1) * res + i];
                 // Simple contour: if threshold crosses between neighbors, draw a dot
                 if ((v00 < threshold) !== (v10 < threshold) || (v00 < threshold) !== (v01 < threshold)) {
-                  imgCtx.fillStyle = 'rgba(255, 255, 255, 0.06)';
+                  imgCtx.fillStyle = contourColor;
                   imgCtx.fillRect(i, j, 1, 1);
                 }
               }
@@ -1244,12 +1296,12 @@
           }
 
           landscapeImg = imgCanvas;
+          landscapeIsLight = isLight;
         }
 
         function resize() {
           dpr = window.devicePixelRatio || 1;
-          var rect = canvas.parentElement.getBoundingClientRect();
-          width = rect.width;
+          width = canvasContentWidth(canvas);
           height = Math.max(340, Math.min(480, width * 0.5));
           canvas.width = width * dpr;
           canvas.height = height * dpr;
@@ -1264,7 +1316,7 @@
           ctx.drawImage(landscapeImg, 0, 0, width, height);
 
           // Subtle grid
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+          ctx.strokeStyle = T.light ? 'rgba(17, 17, 27, 0.05)' : 'rgba(255, 255, 255, 0.03)';
           ctx.lineWidth = 1;
           var gridSize = 40;
           for (var gx = 0; gx < width; gx += gridSize) {
@@ -1329,7 +1381,7 @@
         function drawLabels() {
           ctx.font = '11px "JetBrains Mono", monospace';
           ctx.textAlign = 'center';
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+          ctx.fillStyle = T.label;
           ctx.fillText('loss landscape', width / 2, height - 12);
 
           // Global min marker
@@ -1367,6 +1419,8 @@
         function animate(now) {
           var dt = now - lastTime;
           lastTime = now;
+          T = themeColors();
+          if (landscapeIsLight !== T.light) buildLandscape();
 
           // Fixed timestep simulation (~60fps worth of steps)
           var steps = Math.min(Math.round(dt / 16), 4);
@@ -1459,7 +1513,7 @@
         // ---- Config ----
         var EMBED = 32, HEADS = 4, HD = 8, FF_DIM = 64, MAX_TOK = 12;
         var HCOL = ['#8000ff', '#6bc5f8', '#cf59e6', '#4ecdc4'];
-        var BG = '#11111b';
+        var T = themeColors();
 
         var VOCAB = [
           'the','a','an','is','are','was','were','be','been','being',
@@ -1633,8 +1687,7 @@
 
         function resize() {
           dpr = window.devicePixelRatio || 1;
-          var rect = canvas.parentElement.getBoundingClientRect();
-          width = rect.width;
+          width = canvasContentWidth(canvas);
           height = Math.max(280, Math.min(420, width * 0.45));
           canvas.width = width * dpr;
           canvas.height = height * dpr;
@@ -1713,25 +1766,25 @@
               ctx.fillStyle = 'rgba(128, 0, 255, 0.2)';
               ctx.strokeStyle = 'rgba(128, 0, 255, 0.5)';
             } else if (isH) {
-              ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-              ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+              ctx.fillStyle = 'rgba(' + T.ink + ', 0.1)';
+              ctx.strokeStyle = 'rgba(' + T.ink + ', 0.3)';
             } else {
-              ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-              ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+              ctx.fillStyle = 'rgba(' + T.ink + ', 0.05)';
+              ctx.strokeStyle = 'rgba(' + T.ink + ', 0.1)';
             }
             ctx.fill();
             ctx.lineWidth = 1;
             ctx.stroke();
 
             // Token index label
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.fillStyle = 'rgba(' + T.ink + ', ' + (T.light ? 0.3 : 0.15) + ')';
             ctx.font = '9px "JetBrains Mono", monospace';
             ctx.fillText(i, c.cx, c.y - 6);
 
             // Token text
             ctx.font = '12px "JetBrains Mono", monospace';
             var isActive = isFocus || (focusTok === -1 && isLast);
-            ctx.fillStyle = isActive ? 'rgba(200, 160, 255, 0.9)' : 'rgba(255, 255, 255, 0.7)';
+            ctx.fillStyle = isActive ? T.accentText : 'rgba(' + T.ink + ', 0.7)';
             var disp = c.text.length > 8 ? c.text.slice(0, 7) + '\u2026' : c.text;
             ctx.fillText(disp, c.cx, c.y + c.h / 2);
           }
@@ -1836,7 +1889,7 @@
 
         // Draw grid background
         function drawGrid() {
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+          ctx.strokeStyle = T.grid;
           ctx.lineWidth = 1;
           var gs = 40;
           for (var gx = 0; gx < width; gx += gs) {
@@ -1849,8 +1902,9 @@
 
         // Main draw
         function draw() {
+          T = themeColors();
           ctx.clearRect(0, 0, width, height);
-          ctx.fillStyle = BG;
+          ctx.fillStyle = T.bg;
           ctx.fillRect(0, 0, width, height);
           drawGrid();
 
@@ -1859,7 +1913,7 @@
             ctx.font = '13px "Inter", sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.fillStyle = 'rgba(' + T.ink + ', ' + (T.light ? 0.35 : 0.15) + ')';
             var dots = '';
             var dc = Math.floor((time / 500) % 4);
             for (var i = 0; i < dc; i++) dots += '.';
@@ -1875,7 +1929,7 @@
           // Label
           ctx.font = '11px "JetBrains Mono", monospace';
           ctx.textAlign = 'center';
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+          ctx.fillStyle = T.label;
           var qi = focusTok >= 0 ? focusTok : toks.length - 1;
           ctx.fillText('attention from token ' + qi + ' \u2192 "' + toks[qi] + '"', width / 2, 18);
         }
@@ -1997,6 +2051,42 @@
         resize();
         requestAnimationFrame(animate);
       })();
+    </script>
+
+    <script>
+      const cursorInner = document.getElementById("cursor-inner");
+      const cursorOuter = document.getElementById("cursor-outer");
+      const links = document.querySelectorAll("a,label,button");
+
+      links.forEach((link) => {
+        link.addEventListener("mouseenter", () => {
+          cursorInner.classList.add("hover");
+          cursorOuter.classList.add("hover");
+        });
+        link.addEventListener("mouseleave", () => {
+          cursorInner.classList.remove("hover");
+          cursorOuter.classList.remove("hover");
+        });
+      });
+
+      document.addEventListener("mousemove", function (e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        cursorInner.style.opacity = 1;
+        cursorOuter.style.opacity = 1;
+
+        cursorInner.style.left = `${posX}px`;
+        cursorInner.style.top = `${posY}px`;
+
+        cursorOuter.animate(
+          {
+            left: `${posX}px`,
+            top: `${posY}px`,
+          },
+          { duration: 500, fill: "forwards" }
+        );
+      });
     </script>
   </body>
 </html>

@@ -17,12 +17,43 @@ function playpause() {
     : audio.play();
 }
 
-function visualmode() {
-  document.body.classList.toggle("light-mode"),
-    document.querySelectorAll(".needtobeinvert").forEach(function (e) {
-      e.classList.toggle("invertapplied");
-    });
+// Sync the .needtobeinvert icons with the current theme (idempotent —
+// shared by the click toggle and the load-time restore below).
+function syncinvertclasses() {
+  // The gear/sound icons are white-native SVGs: invert them to black on the
+  // light background, leave them white in dark mode.
+  var isLight = document.body.classList.contains("light-mode");
+  document.querySelectorAll(".needtobeinvert").forEach(function (e) {
+    e.classList.toggle("invertapplied", isLight);
+  });
 }
+
+function visualmode() {
+  document.body.classList.toggle("light-mode");
+  syncinvertclasses();
+  try {
+    localStorage.setItem(
+      "pc-theme",
+      document.body.classList.contains("light-mode") ? "light" : "dark"
+    );
+  } catch (e) {}
+}
+
+// Restore persisted theme (shared "pc-theme" key across all pages).
+// The inline <script> right after <body> already removed .light-mode for
+// stored "dark" (pre-paint); here we just guard idempotently and sync the UI.
+(function restoretheme() {
+  var stored = null;
+  try {
+    stored = localStorage.getItem("pc-theme");
+  } catch (e) {}
+  if (stored === "dark") {
+    document.body.classList.remove("light-mode");
+    var visualSwitch = document.getElementById("switchforvisualmode");
+    if (visualSwitch) visualSwitch.checked = true;
+  }
+  syncinvertclasses();
+})();
 
 window.addEventListener("load", function () {
   loader.style.display = "none";

@@ -154,6 +154,7 @@
      border-radius: 50%;
      z-index: 9999;
      pointer-events: none;
+     opacity: 0; /* hidden until the first mousemove places it */
    }
    
    .setting-container,
@@ -178,9 +179,9 @@
    .activeThistab:before,
    .navbar-tabs-ul li:hover:before {
      background-color: var(--color-white);
-     height: 10px;
-     width: 10px;
-     left: -20px;
+     height: 6px;
+     width: 6px;
+     left: -11px;
    }
    
    .light-mode {
@@ -378,11 +379,13 @@
    }
    
    .navbar {
-     background: rgba(255, 255, 255, 0); /* More glassy, adjust alpha as needed */
-     backdrop-filter: blur(3px) saturate(180%);
-     -webkit-backdrop-filter: blur(3px) saturate(180%);
-     border: 1px solid rgba(255, 255, 255, 0.18);
-     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+     /* Liquid Glass material (tokens from liquid-glass.css) */
+     background: var(--lg-bg);
+     -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     border: 1px solid var(--lg-border);
+     box-shadow: var(--lg-shadow), inset 0 1px 0 var(--lg-edge-top),
+       inset 0 -1px 0 var(--lg-edge-bottom);
      /* Keep your existing styles: */
      height: 80px;
      width: 80%;
@@ -417,7 +420,7 @@
      display: flex;
      list-style: none;
      justify-content: flex-end;
-     gap: 50px;
+     gap: 32px;
      color: var(--color-white);
    }
    
@@ -462,11 +465,15 @@
    }
    
    .hey {
-     color: #fff;
+     color: var(--color-white);
      position: absolute;
      font-size: 2.5rem;
      font-weight: 300;
-     background-color: #20222e;
+     background: var(--lg-bg-strong);
+     -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     border: 1px solid var(--lg-border);
+     box-shadow: inset 0 1px 0 var(--lg-edge-top);
      padding: 5px 10px;
      border-radius: 20px;
      left: 120px;
@@ -813,6 +820,7 @@
    .letsTalkBtn {
      position: relative;
      border: none;
+     background: transparent; /* kill the UA buttonface so the glass layer shows */
      width: 180px;
      height: 40px;
      border-radius: 0;
@@ -823,19 +831,20 @@
    .letsTalkBtn-text {
      width: 100%;
      height: 100%;
-     background-color: rgba(230, 230, 230, 0.466);
-     border: none;
+     background: var(--lg-bg-strong);
+     -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     border: 1px solid var(--lg-border);
      border-radius: 7px;
-     backdrop-filter: blur(5px);
-     color: #000;
+     box-shadow: inset 0 1px 0 var(--lg-edge-top);
+     color: var(--color-white);
      align-items: center;
      justify-content: center;
      letter-spacing: 0.8px;
    }
    
    .cta:hover span,
-   .text,
-   .tooltip {
+   .text {
      color: #fff;
    }
    
@@ -883,7 +892,7 @@
      border: none;
      border-radius: 50%;
      cursor: pointer;
-     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+     box-shadow: var(--lg-shadow);
      background: linear-gradient(82.3deg, #965de9 10.8%, #6358ee 94.3%);
      position: relative;
    }
@@ -1139,15 +1148,6 @@
      -webkit-text-fill-color: transparent;
    }
    
-   .project-box,
-   .tech-stack-box {
-     background-image: linear-gradient(
-       to bottom right,
-       var(--tech-stack-box-first-color),
-       var(--tech-stack-box-second-color)
-     );
-   }
-   
    .tech-stack-wrapper {
      justify-content: center;
      flex-wrap: wrap;
@@ -1168,11 +1168,26 @@
      width: 100px;
      height: 100px;
      justify-content: center;
+     background: var(--lg-bg);
+     -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
      border-radius: 20px;
-     border: 1px solid var(--tech-stack-box-border-color);
+     border: 1px solid var(--lg-border);
+     box-shadow: inset 0 1px 0 var(--lg-edge-top);
      position: relative;
+     transition:
+       transform var(--lg-dur) var(--lg-spring),
+       border-color var(--lg-dur) var(--lg-ease),
+       box-shadow var(--lg-dur) var(--lg-ease);
    }
-   
+
+   .tech-stack-box:hover {
+     transform: translateY(-4px);
+     border-color: var(--lg-border-hover);
+     box-shadow: var(--lg-shadow-hover), var(--lg-glow),
+       inset 0 1px 0 var(--lg-edge-top);
+   }
+
    .tech-stack-box img {
      width: 80%;
    }
@@ -1186,21 +1201,20 @@
      position: absolute;
      top: -20px;
      opacity: 0;
-     background: linear-gradient(
-       to bottom right,
-       var(--tech-stack-box-first-color),
-       var(--tech-stack-box-second-color)
-     );
-     border: 1px solid var(--tech-stack-box-border-color);
+     background: var(--lg-bg-strong);
+     -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     border: 1px solid var(--lg-border);
+     box-shadow: var(--lg-shadow), inset 0 1px 0 var(--lg-edge-top);
+     color: var(--color-white);
      padding: 5px 10px;
-     border-radius: 5px;
+     border-radius: var(--lg-radius-pill);
      justify-content: center;
      transition-duration: 0.2s;
      pointer-events: none;
      letter-spacing: 0.5px;
      font-size: 1.6rem;
      font-weight: 500;
-     backdrop-filter: blur(5px);
    }
    
    /* ===========================================
@@ -1244,9 +1258,24 @@
      display: flex;
      flex-direction: row;
      justify-content: space-between;
-     transition-duration: 0.3s;
+     background: var(--lg-bg);
+     -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+     backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
      border-radius: 30px;
-     border: 1px solid var(--tech-stack-box-border-color);
+     border: 1px solid var(--lg-border);
+     box-shadow: inset 0 1px 0 var(--lg-edge-top);
+     transition:
+       transform var(--lg-dur) var(--lg-spring),
+       border-color var(--lg-dur) var(--lg-ease),
+       box-shadow var(--lg-dur) var(--lg-ease),
+       background var(--lg-dur) var(--lg-ease);
+   }
+
+   .project-box:hover {
+     transform: translateY(-4px);
+     border-color: var(--lg-border-hover);
+     box-shadow: var(--lg-shadow-hover), var(--lg-glow),
+       inset 0 1px 0 var(--lg-edge-top);
    }
    
    .info-div {
@@ -1685,6 +1714,22 @@
        font-size: 60%;
      }
    }
+
+   /* Nine nav tabs: give the navbar more room and tighten the tabs
+      between the desktop-nav cutoff (998px) and comfortable widths. */
+   @media screen and (min-width: 999px) and (max-width: 1440px) {
+     .navbar {
+       width: 92%;
+     }
+
+     .navbar-tabs-ul {
+       gap: 20px;
+     }
+
+     .navbar-tabs-ul li {
+       font-size: 1.3rem;
+     }
+   }
    
    @media screen and (max-width: 998px) {
      #hamburger-button,
@@ -1791,7 +1836,11 @@
      }
    
      .mobiletogglemenu {
+       /* glass sheet: theme-tinted, blurred; solid fallback below */
        background-color: var(--color-dark-mode);
+       background-color: color-mix(in srgb, var(--color-dark-mode) 72%, transparent);
+       -webkit-backdrop-filter: blur(28px) saturate(var(--lg-saturate));
+       backdrop-filter: blur(28px) saturate(var(--lg-saturate));
        z-index: 9990;
        height: 100%;
        width: 100%;
@@ -1805,22 +1854,38 @@
        transform: translate(1000px);
        transition-duration: 1s;
      }
-   
+
      .show-toggle-menu {
        transform: translate(0);
        transition-duration: 0.6s;
      }
-   
+
      .mobile-navbar-tabs-ul {
        background-color: var(--color-dark-mode);
+       background-color: color-mix(in srgb, var(--color-dark-mode) 72%, transparent);
+       -webkit-backdrop-filter: blur(28px) saturate(var(--lg-saturate));
+       backdrop-filter: blur(28px) saturate(var(--lg-saturate));
        width: 100%;
        height: 100%;
        display: flex;
        flex-direction: column;
        justify-content: center;
+       justify-content: safe center; /* keeps first/last items reachable when the list overflows */
        align-items: center;
-       gap: 70px;
+       gap: 42px;
+       padding: 120px 0 60px;
+       overflow-y: auto;
        box-shadow: 0 0 30px rgba(0, 0, 0, 0.176);
+     }
+
+     /* no backdrop-filter support -> keep the menu fully opaque/readable */
+     @supports not (
+       (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+     ) {
+       .mobiletogglemenu,
+       .mobile-navbar-tabs-ul {
+         background-color: var(--color-dark-mode);
+       }
      }
    
      .mobile-navbar-tabs-li {
@@ -2133,12 +2198,19 @@
      position: relative;
      border-radius: 20px;
      overflow: hidden;
-     background: var(--tech-stack-box-second-color);
-     transition: transform 0.3s ease;
+     background: var(--lg-bg);
+     border: 1px solid var(--lg-border);
+     box-shadow: inset 0 1px 0 var(--lg-edge-top);
+     transition:
+       transform var(--lg-dur) var(--lg-spring),
+       border-color var(--lg-dur) var(--lg-ease),
+       box-shadow var(--lg-dur) var(--lg-ease);
    }
-   
+
    .grid-item:hover {
      transform: scale(1.02);
+     border-color: var(--lg-border-hover);
+     box-shadow: var(--lg-shadow-hover), inset 0 1px 0 var(--lg-edge-top);
    }
    
    .grid-item.large {
@@ -2157,9 +2229,11 @@
      width: 100%;
      height: 100%;
      object-fit: cover;
-     transition: transform 0.3s ease;
+     /* concentric with the 20px frame (minus 1px border) */
+     border-radius: 19px;
+     transition: transform var(--lg-dur) var(--lg-spring);
    }
-   
+
    .grid-img:hover {
      transform: scale(1.05);
    }

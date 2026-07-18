@@ -62,6 +62,8 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="liquid-glass.css" />
+    <script src="liquid-glass.js" defer></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -138,6 +140,7 @@
   </head>
 
   <body class="body light-mode">
+    <script>try{if(localStorage.getItem("pc-theme")==="dark")document.body.classList.remove("light-mode");}catch(e){}</script>
     <audio loop="" id="audioPlayer" style="display: none">
       <source src="src/mp3/preloader.mp3" type="audio/mpeg" />
     </audio>
@@ -203,12 +206,18 @@
             </li>
 
             <li data-aos="fade-down" data-aos-delay="900">
+              <a href="travel.html" aria-label="travel page">
+                travel()
+              </a>
+            </li>
+
+            <li data-aos="fade-down" data-aos-delay="1000">
               <a href="blog.html" aria-label="blog page">
                 log()
               </a>
             </li>
 
-            <li data-aos="fade-down" data-aos-delay="1000">
+            <li data-aos="fade-down" data-aos-delay="1100">
               <a href="playground.html" aria-label="playground page">
                 play()
               </a>
@@ -295,6 +304,15 @@
           >
             <a href="#gallery" tabindex="0" aria-label="gallery menu button">
               visualize()
+            </a>
+          </li>
+
+          <li
+            class="mobile-navbar-tabs-li"
+            onclick="hidemenubyli()"
+          >
+            <a href="travel.html" tabindex="0" aria-label="travel page">
+              travel()
             </a>
           </li>
 
@@ -1403,6 +1421,9 @@
       document.addEventListener("mousemove", function (e) {
         const posX = e.clientX;
         const posY = e.clientY;
+
+        cursorInner.style.opacity = 1;
+        cursorOuter.style.opacity = 1;
 
         cursorInner.style.left = `${posX}px`;
         cursorInner.style.top = `${posY}px`;

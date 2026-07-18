@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Travel log of Param Chordiya — US states, national parks, and countries explored, plus field notes and photographs from the road."
+    />
+    <meta
+      name="keywords"
+      content="Param Chordiya, Travel, Travel Map, US States, National Parks, Countries Visited, Photography, Field Notes"
+    />
+    <meta name="author" content="Param Chordiya" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000" />
+    <link rel="canonical" href="https://paramchordiya.github.io/travel" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Param Chordiya | Travel" />
+    <meta property="og:description" content="Places, pixels, and passport stamps — states, parks, and countries explored by Param Chordiya." />
+    <meta property="og:image" content="https://paramchordiya.github.io/src/png/img_prof.jpg" />
+    <meta property="og:url" content="https://paramchordiya.github.io/travel" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Param Chordiya — Travel" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Param Chordiya | Travel" />
+    <meta name="twitter:description" content="Places, pixels, and passport stamps — states, parks, and countries explored." />
+    <meta name="twitter:image" content="https://paramchordiya.github.io/src/png/img_prof.jpg" />
+    <meta name="twitter:creator" content="@paramchordiya" />
+
+    <!-- Title -->
+    <title>Param Chordiya | Travel</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="src/png/IMG_6400.png" />
+
+    <!-- AOS CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Stylesheets (order matters: base, glass system, page) -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="liquid-glass.css" />
+    <script src="liquid-glass.js" defer></script>
+    <link rel="stylesheet" href="travel.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="body light-mode">
+    <script>try{if(localStorage.getItem("pc-theme")==="dark")document.body.classList.remove("light-mode");}catch(e){}</script>
+    <div class="lg-ambient" aria-hidden="true"></div>
+
+    <header>
+      <div class="cursor-inner" id="cursor-inner"></div>
+      <div class="cursor-outer" id="cursor-outer"></div>
+
+      <div class="navbar" id="navbar">
+        <div class="logo" tabindex="0" aria-label="param chordiya logo">
+          <div class="logo-top">
+            <img src="src/png/IMG_6401.png" alt="Param Chordiya avatar" id="nav-avatar" />
+          </div>
+        </div>
+        <div class="navbar-tabs" id="navbar-tabs">
+          <ul class="navbar-tabs-ul">
+            <li data-aos="fade-down" data-aos-delay="100">
+              <a href="index.html#home" aria-label="Home menu button">init()</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="200">
+              <a href="index.html#about" aria-label="about menu button">about()</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="300">
+              <a href="index.html#skills" aria-label="skills menu button">layers()</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="400">
+              <a href="index.html#publications" aria-label="publications menu button">research()</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="500">
+              <a href="index.html#projects" aria-label="projects menu button">predict()</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="600">
+              <a href="index.html#gallery" aria-label="gallery menu button">visualize()</a>
+            </li>
+            <li class="activeThistab" data-aos="fade-down" data-aos-delay="700">
+              <a href="travel.html" aria-label="travel page">travel()</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="800">
+              <a href="blog.html" aria-label="blog page">log()</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="900">
+              <a href="playground.html" aria-label="playground page">play()</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hamburger (mobile) -->
+      <div class="hamburger" id="hamburger" data-aos="fade">
+        <div class="hamburgerbase">
+          <button id="hamburger-button" onclick="hamburgerMenu()" tabindex="0" aria-label="Menu Button">
+            <span class="burger-bar" id="burger-bar1"></span>
+            <span class="burger-bar" id="burger-bar2"></span>
+            <span class="burger-bar" id="burger-bar3"></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobiletogglemenu" id="mobiletogglemenu">
+        <ul class="mobile-navbar-tabs-ul" id="mobile-ul">
+          <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
+            <a href="index.html#home" tabindex="0">init()</a>
+          </li>
+          <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
+            <a href="index.html#about" tabindex="0">about()</a>
+          </li>
+          <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
+            <a href="index.html#skills" tabindex="0">layers()</a>
+          </li>
+          <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
+            <a href="index.html#publications" tabindex="0">research()</a>
+          </li>
+          <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
+            <a href="index.html#projects" tabindex="0">predict()</a>
+          </li>
+          <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
+            <a href="index.html#gallery" tabindex="0">visualize()</a>
+          </li>
+          <li class="mobile-navbar-tabs-li activeThismobiletab" onclick="hidemenubyli()">
+            <a href="travel.html" tabindex="0">travel()</a>
+          </li>
+          <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
+            <a href="blog.html" tabindex="0">log()</a>
+          </li>
+          <li class="mobile-navbar-tabs-li" onclick="hidemenubyli()">
+            <a href="playground.html" tabindex="0">play()</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Travel Content -->
+      <div class="travel-content">
+        <header class="subpage-header">
+          <h1 class="travel-heading">model.travel()</h1>
+          <p class="subpage-subtitle">
+            Places, pixels, and passport stamps &mdash; a running log of everywhere
+            the gradient descent has wandered off the beaten path.
+          </p>
+        </header>
+
+        <!-- Stats strip (values are derived from the data in travel.js) -->
+        <section class="travel-stats" aria-label="Travel statistics">
+          <div class="stat-tile lg-material lg-card lg-reveal">
+            <p class="stat-value"><span class="stat-num" data-stat="states">0</span><span class="stat-denom" data-stat="states">/&ndash;</span></p>
+            <p class="stat-label">us_states</p>
+            <p class="stat-sub">coast to coast</p>
+          </div>
+          <div class="stat-tile lg-material lg-card lg-reveal" style="transition-delay: 0.08s">
+            <p class="stat-value"><span class="stat-num" data-stat="parks">0</span><span class="stat-denom" data-stat="parks">/&ndash;</span></p>
+            <p class="stat-label">national_parks</p>
+            <p class="stat-sub">stamps collected</p>
+          </div>
+          <div class="stat-tile lg-material lg-card lg-reveal" style="transition-delay: 0.16s">
+            <p class="stat-value"><span class="stat-num" data-stat="countries">0</span><span class="stat-denom" data-stat="countries">/&ndash;</span></p>
+            <p class="stat-label">countries</p>
+            <p class="stat-sub">and counting</p>
+          </div>
+        </section>
+
+        <!-- United States -->
+        <section class="travel-section" id="states">
+          <div class="section-heading lg-reveal">
+            <h2 class="section-heading-article" tabindex="0" aria-label="Visited US states heading">
+              model.states()
+            </h2>
+            <p class="sectionHeadingP"></p>
+          </div>
+          <p class="travel-section-sub lg-reveal">
+            Every state lights up once the boots have actually touched the ground.
+            Hover around &mdash; the map keeps score.
+          </p>
+          <div class="map-panel lg-material lg-panel lg-reveal" id="us-map-panel">
+            <div class="map-holder" id="us-map" aria-label="Map of visited US states"></div>
+            <p class="map-fallback" hidden>// map failed to load &mdash; check your connection and refresh</p>
+          </div>
+        </section>
+
+        <!-- National Parks -->
+        <section class="travel-section" id="parks">
+          <div class="section-heading lg-reveal">
+            <h2 class="section-heading-article" tabindex="0" aria-label="National parks heading">
+              model.parks()
+            </h2>
+            <p class="sectionHeadingP"></p>
+          </div>
+          <p class="travel-section-sub lg-reveal">
+            A passport wall of national parks &mdash; one stamp pressed for every
+            trail actually walked.
+          </p>
+          <div class="stamp-panel lg-material lg-panel lg-reveal">
+            <div class="stamp-wall" id="stamp-wall"></div>
+            <p class="stamp-caption" id="stamp-caption"></p>
+          </div>
+        </section>
+
+        <!-- Countries -->
+        <section class="travel-section" id="countries">
+          <div class="section-heading lg-reveal">
+            <h2 class="section-heading-article" tabindex="0" aria-label="Visited countries heading">
+              model.countries()
+            </h2>
+            <p class="sectionHeadingP"></p>
+          </div>
+          <p class="travel-section-sub lg-reveal">
+            Pins on the world map. The list is short; the wishlist is not.
+            Hover a flag to find its country.
+          </p>
+          <div class="map-panel lg-material lg-panel lg-reveal" id="world-map-panel">
+            <div class="map-holder" id="world-map" aria-label="Map of visited countries"></div>
+            <p class="map-fallback" hidden>// map failed to load &mdash; check your connection and refresh</p>
+            <div class="flag-chips" id="flag-chips"></div>
+          </div>
+        </section>
+
+        <!-- Field Notes -->
+        <section class="travel-section travel-gallery" id="fieldnotes">
+          <div class="section-heading lg-reveal">
+            <h2 class="section-heading-article" tabindex="0" aria-label="Field notes photo gallery heading">
+              model.fieldnotes()
+            </h2>
+            <p class="sectionHeadingP"></p>
+          </div>
+          <p class="travel-section-sub lg-reveal">
+            Frames worth keeping from along the way.
+          </p>
+
+          <!--
+            HOW TO ADD MORE PHOTOS
+            ======================
+            1. Drop the image file into src/fun_images/.
+            2. Copy one of the .grid-item blocks below and update the src + alt.
+            3. Keep the alternating rhythm: each row pairs one narrow item
+               (grid-column: span 3) with one wide item (grid-column: span 9),
+               flipping the order on every other row. On screens under 768px
+               everything stacks full-width automatically.
+            4. Always keep loading="lazy" and write a meaningful alt text.
+          -->
+          <div class="grid-container">
+            <div class="grid-item small lg-reveal" style="grid-column: span 3;">
+              <img
+                src="src/fun_images/IMG_2054.jpeg"
+                alt="Travel snapshot from the road"
+                class="grid-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="grid-item large lg-reveal" style="grid-column: span 9; transition-delay: 0.07s">
+              <img
+                src="src/fun_images/IMG_7679.jpeg"
+                alt="Wide outdoor adventure landscape"
+                class="grid-img"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="grid-item large lg-reveal" style="grid-column: span 9;">
+              <img
+                src="src/fun_images/IMG_6460.jpeg"
+                alt="Mountain landscape on a clear day"
+                class="grid-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="grid-item small lg-reveal" style="grid-column: span 3; transition-delay: 0.07s">
+              <img
+                src="src/fun_images/IMG_6008.jpeg"
+                alt="Scenic viewpoint from a hike"
+                class="grid-img"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="grid-item small lg-reveal" style="grid-column: span 3;">
+              <img
+                src="src/fun_images/DSC0057.jpg"
+                alt="Detail shot captured on a DSLR"
+                class="grid-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="grid-item large lg-reveal" style="grid-column: span 9; transition-delay: 0.07s">
+              <img
+                src="src/fun_images/DSC0081.jpg"
+                alt="Nature photograph of open scenery"
+                class="grid-img"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="subpage-footer">
+      <button id="backtotopbutton" onclick="scrolltoTopfunction()">
+        <article aria-label="Back to top">&#8592;BACK TO TOP</article>
+      </button>
+      <div>
+        <article class="subpage-footer-heading">GetinTouch();</article>
+        <div class="subpage-footer-links">
+          <a href="https://www.instagram.com/justbeingparam" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/paramchordiya" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+          </a>
+          <a href="https://github.com/paramchordiya" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/></svg>
+          </a>
+          <a href="mailto:param1111.chordiya@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+            <svg viewBox="0 0 512 512"><path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/></svg>
+          </a>
+        </div>
+        <p class="subpage-footer-copy">&copy; 2025 Param Chordiya</p>
+      </div>
+    </footer>
+
+    <!-- Theme toggle -->
+    <button class="lg-fab" id="theme-fab" aria-label="Toggle light and dark mode" onclick="toggleTheme()">
+      <svg class="lg-fab-sun" viewBox="0 0 512 512"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
+      <svg class="lg-fab-moon" viewBox="0 0 384 512"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
+    </button>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+
+      // Hamburger menu
+      function hamburgerMenu() {
+        document.body.classList.toggle("stopscrolling");
+        document.getElementById("mobiletogglemenu").classList.toggle("show-toggle-menu");
+        document.getElementById("burger-bar1").classList.toggle("hamburger-animation1");
+        document.getElementById("burger-bar2").classList.toggle("hamburger-animation2");
+        document.getElementById("burger-bar3").classList.toggle("hamburger-animation3");
+      }
+
+      function hidemenubyli() {
+        document.body.classList.remove("stopscrolling");
+        document.getElementById("mobiletogglemenu").classList.remove("show-toggle-menu");
+        document.getElementById("burger-bar1").classList.remove("hamburger-animation1");
+        document.getElementById("burger-bar2").classList.remove("hamburger-animation2");
+        document.getElementById("burger-bar3").classList.remove("hamburger-animation3");
+      }
+
+      // Back to top
+      var backToTopBtn = document.getElementById("backtotopbutton");
+      window.addEventListener("scroll", function () {
+        backToTopBtn.style.display =
+          document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
+            ? "block"
+            : "none";
+      });
+      function scrolltoTopfunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+
+      // Theme toggle
+      function toggleTheme(){var l=document.body.classList.toggle("light-mode");try{localStorage.setItem("pc-theme",l?"light":"dark")}catch(e){}}
+    </script>
+
+    <script>
+      const cursorInner = document.getElementById("cursor-inner");
+      const cursorOuter = document.getElementById("cursor-outer");
+      const links = document.querySelectorAll("a,label,button");
+
+      links.forEach((link) => {
+        link.addEventListener("mouseenter", () => {
+          cursorInner.classList.add("hover");
+          cursorOuter.classList.add("hover");
+        });
+        link.addEventListener("mouseleave", () => {
+          cursorInner.classList.remove("hover");
+          cursorOuter.classList.remove("hover");
+        });
+      });
+
+      document.addEventListener("mousemove", function (e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        cursorInner.style.opacity = 1;
+        cursorOuter.style.opacity = 1;
+
+        cursorInner.style.left = `${posX}px`;
+        cursorInner.style.top = `${posY}px`;
+
+        cursorOuter.animate(
+          {
+            left: `${posX}px`,
+            top: `${posY}px`,
+          },
+          { duration: 500, fill: "forwards" }
+        );
+      });
+    </script>
+
+    <script src="travel.js"></script>
+  </body>
+</html>
