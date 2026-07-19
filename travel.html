@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Travel log of Param Chordiya — US states, national parks, and countries explored, plus field notes and photographs from the road."
+      content="Travel log of Param Chordiya — interactive maps of US states, national parks, and countries explored, plus field notes and photographs from the road."
     />
     <meta
       name="keywords"
@@ -16,25 +16,24 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000" />
-    <link rel="canonical" href="https://paramchordiya.github.io/travel" />
+    <link rel="canonical" href="https://paramchordiya.github.io/travel.html" />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Param Chordiya | Travel" />
-    <meta property="og:description" content="Places, pixels, and passport stamps — states, parks, and countries explored by Param Chordiya." />
+    <meta property="og:title" content="Param Chordiya | Travel Map — States, Parks & Countries" />
+    <meta property="og:description" content="Places, pixels, and passport stamps — US states, national parks, and countries explored by Param Chordiya." />
     <meta property="og:image" content="https://paramchordiya.github.io/src/png/img_prof.jpg" />
-    <meta property="og:url" content="https://paramchordiya.github.io/travel" />
+    <meta property="og:url" content="https://paramchordiya.github.io/travel.html" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Param Chordiya — Travel" />
+    <meta property="og:site_name" content="Param Chordiya" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Param Chordiya | Travel" />
-    <meta name="twitter:description" content="Places, pixels, and passport stamps — states, parks, and countries explored." />
+    <meta name="twitter:title" content="Param Chordiya | Travel Map — States, Parks & Countries" />
+    <meta name="twitter:description" content="Places, pixels, and passport stamps — US states, national parks, and countries explored." />
     <meta name="twitter:image" content="https://paramchordiya.github.io/src/png/img_prof.jpg" />
-    <meta name="twitter:creator" content="@paramchordiya" />
 
     <!-- Title -->
-    <title>Param Chordiya | Travel</title>
+    <title>Param Chordiya | Travel Map — States, Parks & Countries</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="src/png/IMG_6400.png" />
@@ -52,6 +51,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://paramchordiya.github.io/travel.html",
+        "url": "https://paramchordiya.github.io/travel.html",
+        "name": "Param Chordiya | Travel Map — States, Parks & Countries",
+        "description": "Travel log of Param Chordiya — interactive maps of US states, national parks, and countries explored, plus field notes and photographs from the road.",
+        "inLanguage": "en",
+        "isPartOf": { "@id": "https://paramchordiya.github.io/#website" },
+        "author": {
+          "@type": "Person",
+          "@id": "https://paramchordiya.github.io/#person",
+          "name": "Param Chordiya",
+          "url": "https://paramchordiya.github.io/"
+        }
+      }
+    </script>
   </head>
 
   <body class="body light-mode">
@@ -148,12 +167,19 @@
       <!-- Travel Content -->
       <div class="travel-content">
         <header class="subpage-header">
-          <h1 class="travel-heading">model.travel()</h1>
+          <h1 class="travel-heading">param.travel()</h1>
           <p class="subpage-subtitle">
-            Places, pixels, and passport stamps &mdash; a running log of everywhere
-            the gradient descent has wandered off the beaten path.
+            Places, pixels, and passport stamps &mdash; Param Chordiya's running log
+            of everywhere the gradient descent has wandered off the beaten path.
           </p>
         </header>
+        <noscript>
+          <p>
+            This page maps the US states, national parks, and countries Param Chordiya
+            has visited, alongside photographs from the road. Enable JavaScript to see
+            the interactive maps, park stamps, and photo gallery.
+          </p>
+        </noscript>
 
         <!-- Stats strip (values are derived from the data in travel.js) -->
         <section class="travel-stats" aria-label="Travel statistics">

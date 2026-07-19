@@ -1751,11 +1751,27 @@
        font-size: 55%;
      }
    
-     .blob,
      .cursor-inner,
      .cursor-outer,
      .navbar-tabs-ul {
        display: none;
+     }
+
+     /* keep the hero blob on small screens — the glass panels need colour
+        behind them to read as glass. Swap the 300px blur() + opacity
+        animation (GPU-hostile on phones) for a static radial-gradient. */
+     .blob {
+       width: 100vw;
+       height: 90vh;
+       right: -40%;
+       filter: none;
+       animation: none;
+       background: radial-gradient(
+         closest-side,
+         var(--color-light-purple),
+         transparent 72%
+       );
+       opacity: 0.35;
      }
    
      .stopscrolling {

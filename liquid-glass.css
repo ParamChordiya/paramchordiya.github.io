@@ -225,6 +225,56 @@
   to   { transform: translate3d(10vmax, -8vmax, 0) scale(0.95); }
 }
 
+/* injected by liquid-glass.js on pages whose markup has no .lg-ambient
+   (index.html) — desktop keeps its own backdrop (.blob), small screens
+   show this instead so the glass always has colour to refract */
+.lg-ambient-auto {
+  display: none;
+}
+
+/* ---------- mobile: keep the glass glassy ----------
+   Small screens run on tighter GPU budgets, and the desktop ambient —
+   two 55vmax discs under filter: blur(120px) at 0.16 opacity, parked
+   at -20vmax corners — is both expensive and nearly invisible on a
+   phone viewport, so backdrop-filter has nothing to frost. Swap the
+   blur()ed discs for plain radial-gradient washes (no filter, no
+   animation, more presence) and add a fixed whole-viewport wash so
+   full-width panels mid-page still sit over colour. */
+@media screen and (max-width: 998px) {
+  .lg-ambient-auto {
+    display: block;
+  }
+
+  .lg-ambient {
+    background:
+      radial-gradient(80vmax 60vmax at 88% 12%,
+        rgba(128, 0, 255, 0.2), transparent 68%),
+      radial-gradient(70vmax 55vmax at 0% 55%,
+        rgba(107, 197, 248, 0.16), transparent 66%),
+      radial-gradient(60vmax 48vmax at 70% 95%,
+        rgba(207, 89, 230, 0.15), transparent 70%);
+  }
+
+  .lg-ambient::before,
+  .lg-ambient::after {
+    filter: none;
+    animation: none;
+    width: 120vmin;
+    height: 120vmin;
+    opacity: 0.34;
+  }
+  .lg-ambient::before {
+    background: radial-gradient(closest-side, var(--lg-accent-3), transparent 72%);
+    top: -55vmin;
+    right: -45vmin;
+  }
+  .lg-ambient::after {
+    background: radial-gradient(closest-side, var(--lg-accent-2), transparent 72%);
+    bottom: -55vmin;
+    left: -45vmin;
+  }
+}
+
 /* ---------- silky reveal (for in-page, non-AOS reveals) ---------- */
 .lg-reveal {
   opacity: 0;

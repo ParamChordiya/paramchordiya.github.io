@@ -72,6 +72,25 @@
     });
   }
 
+  /* ---------------- ambient backdrop (all engines) ----------------------
+     Glass only reads as glass when there is colour behind it to blur.
+     Subpages ship a .lg-ambient layer in markup; index.html relies on its
+     .blob, which is desktop-sized. Inject a spare ambient layer on any
+     page that lacks one — CSS (.lg-ambient-auto in liquid-glass.css)
+     keeps it hidden on desktop and shows it on small screens. */
+  function ensureAmbient() {
+    if (document.querySelector(".lg-ambient")) return;
+    var amb = document.createElement("div");
+    amb.className = "lg-ambient lg-ambient-auto";
+    amb.setAttribute("aria-hidden", "true");
+    document.body.insertBefore(amb, document.body.firstChild);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ensureAmbient);
+  } else {
+    ensureAmbient();
+  }
+
   /* ---------------- refraction lens (Chromium only) --------------------- */
   if (REDUCED_TRANSPARENCY) return;
   if (/[?&]nolens\b/.test(window.location.search)) return;
@@ -81,6 +100,17 @@
       return /Chromium/i.test(b.brand);
     }));
   if (!isChromium) return;
+
+  /* The lens recipe is nearly clear (3px blur, faint tint) — over a phone
+     viewport it makes panes invisible, and SVG-in-backdrop-filter is
+     costly on mobile GPUs. Touch devices and small viewports keep the
+     frosted base material from liquid-glass.css instead. */
+  if (window.matchMedia && !window.matchMedia("(pointer: fine)").matches) {
+    return;
+  }
+  var mobileMQ = window.matchMedia
+    ? window.matchMedia("(max-width: 998px)")
+    : null;
 
   var LENS_TARGETS =
     ".navbar, .lg-material, .lg-fab, .project-box, .letsTalkBtn-text";
@@ -199,13 +229,13 @@
     filter.appendChild(feDisp);
     defs.appendChild(filter);
 
+    var bf = "url(#" + id + ") blur(var(--lg-lens-blur)) " +
+             "saturate(var(--lg-lens-saturate))";
     var rec = { el: el, filter: filter, feImage: feImage, feDisp: feDisp,
-                w: 0, h: 0 };
+                bf: bf, w: 0, h: 0 };
     updateLens(rec);
 
     el.classList.add("lg-lensed");
-    var bf = "url(#" + id + ") blur(var(--lg-lens-blur)) " +
-             "saturate(var(--lg-lens-saturate))";
     el.style.setProperty("backdrop-filter", bf);
     el.style.setProperty("-webkit-backdrop-filter", bf);
     return rec;
@@ -281,9 +311,46 @@
     })();
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+  /* detach / reattach the lens when the viewport crosses the mobile
+     breakpoint, so a resized window falls back to the frosted material
+     (and never builds lenses at all while small) */
+  function setLensEnabled(on) {
+    records.forEach(function (rec) {
+      if (on) {
+        rec.el.classList.add("lg-lensed");
+        rec.el.style.setProperty("backdrop-filter", rec.bf);
+        rec.el.style.setProperty("-webkit-backdrop-filter", rec.bf);
+      } else {
+        rec.el.classList.remove("lg-lensed");
+        rec.el.style.removeProperty("backdrop-filter");
+        rec.el.style.removeProperty("-webkit-backdrop-filter");
+      }
+    });
+  }
+
+  var booted = false;
+  function boot() {
+    if (booted) return;
+    booted = true;
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  }
+
+  if (mobileMQ) {
+    mobileMQ.addEventListener("change", function (e) {
+      if (e.matches) {
+        setLensEnabled(false);
+      } else if (booted) {
+        setLensEnabled(true);
+      } else {
+        boot();
+      }
+    });
+    if (!mobileMQ.matches) boot();
   } else {
-    init();
+    boot();
   }
 })();
