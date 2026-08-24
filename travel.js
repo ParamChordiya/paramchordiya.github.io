@@ -34,6 +34,7 @@ const VISITED_PARKS = [
   { name: "Death Valley",   state: "CA" },
   { name: "Bryce Canyon",   state: "UT" },
   { name: "Mount Rainier",  state: "WA" },
+  { name: "North Cascades", state: "WA" },
   { name: "Rocky Mountain", state: "CO" },
   { name: "Sequoia",        state: "CA" },
   { name: "Yellowstone",    state: "WY" },
@@ -563,6 +564,15 @@ const TOTAL_COUNTRIES      = 195;
       'fill="none" stroke-width="3" stroke-linecap="round"/>' +
       '<path class="stamp-glyph" d="M 72,76 Q 84,84 96,76" fill="none" stroke-width="2.5" stroke-linecap="round"/>' +
       '<path class="stamp-glyph" d="M 80,64 L 82,72 M 88,64 L 86,72" fill="none" stroke-width="2" stroke-linecap="round"/>',
+    /* the "American Alps": serrated granite skyline over a glacier lake */
+    "north cascades":
+      '<path class="stamp-glyph" d="M 44,92 L 56,68 L 63,78 L 73,52 L 81,66 L 89,56 L 99,74 L 107,64 L 124,92" ' +
+      'fill="none" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<path class="stamp-glyph" d="M 70.8,65 L 77.2,65" fill="none" stroke-width="2" stroke-linecap="round"/>' +
+      '<path class="stamp-glyph" d="M 48,98 q 6,-3.5 12,0 t 12,0 t 12,0 t 12,0 t 12,0 t 12,0" ' +
+      'fill="none" stroke-width="2.5" stroke-linecap="round"/>' +
+      '<path class="stamp-glyph" d="M 66,105 q 6,-3.5 12,0 t 12,0 t 12,0" ' +
+      'fill="none" stroke-width="2" stroke-linecap="round"/>',
     /* rugged front-range peaks behind a lone pine */
     "rocky mountain":
       '<path class="stamp-glyph" d="M 60,100 L 80,60 L 90,76 L 102,56 L 122,100" ' +
