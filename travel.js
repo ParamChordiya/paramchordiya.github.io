@@ -22,6 +22,7 @@
 const VISITED_STATES = [
   "ok", "pa", "ny", "nj", "nv", "mt", "md", "il",
   "id", "co", "ca", "az", "ut", "tx", "wa", "wy",
+  "ga", "tn",
   "dc", /* lights up on the map but doesn't count toward the /50 stat */
 ];
 
@@ -31,6 +32,7 @@ const VISITED_STATES = [
 const VISITED_PARKS = [
   { name: "Grand Teton",    state: "WY" },
   { name: "Grand Canyon",   state: "AZ" },
+  { name: "Great Smoky Mountains", state: "TN" },
   { name: "Death Valley",   state: "CA" },
   { name: "Bryce Canyon",   state: "UT" },
   { name: "Mount Rainier",  state: "WA" },
@@ -538,6 +540,16 @@ const TOTAL_COUNTRIES      = 195;
       '<path class="stamp-glyph" d="M 74,58 L 82,88 M 94,58 L 86,88" ' +
       'fill="none" stroke-width="3" stroke-linecap="round"/>' +
       '<path class="stamp-glyph" d="M 78,97 Q 84,92 90,97" fill="none" stroke-width="2.5" stroke-linecap="round"/>',
+    /* the Smokies: layered blue-ridge silhouettes fading into morning haze */
+    "great smoky mountains":
+      '<path class="stamp-glyph" d="M 44,70 Q 58,52 72,62 Q 86,72 100,56 Q 112,46 124,60" ' +
+      'fill="none" stroke-width="3" stroke-linecap="round"/>' +
+      '<path class="stamp-glyph" d="M 44,84 Q 60,66 78,78 Q 94,88 110,72 Q 118,66 124,76" ' +
+      'fill="none" stroke-width="2.5" stroke-linecap="round"/>' +
+      '<path class="stamp-glyph" d="M 44,98 Q 62,82 80,92 Q 98,102 124,90" ' +
+      'fill="none" stroke-width="2" stroke-linecap="round"/>' +
+      '<path class="stamp-glyph" d="M 52,106 L 70,106 M 80,106 L 92,106 M 100,106 L 116,106" ' +
+      'fill="none" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>',
     /* rolling dunes under a desert sun */
     "death valley":
       '<circle class="stamp-glyph" cx="100" cy="58" r="7" fill="none" stroke-width="2.5"/>' +
@@ -614,7 +626,7 @@ const TOTAL_COUNTRIES      = 195;
 
   function stampSVG(park, i) {
     var name = String(park.name).toUpperCase();
-    var topSize = name.length > 11 ? 12 : 14;
+    var topSize = name.length > 18 ? 10 : name.length > 11 ? 12 : 14;
     var bottom = "★ NATIONAL PARK · " + escapeHTML(park.state) + " ★";
     return (
       '<svg class="stamp-art" viewBox="0 0 168 168" aria-hidden="true" focusable="false">' +
